@@ -23,26 +23,6 @@ class PostDropletVM: ObservableObject {
         self.webservice = Webservice()
     }
     
-    @Published var displayedLastSubmitted: String = "Ausstehend"
-    private var lastSubmitted: Date?
-    var timer: Timer?
-    
-    func updateSubmittedTime() {
-        if timer != nil {
-            timer?.invalidate()
-        }
-        
-        self.lastSubmitted = Date()
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            if let lastSubmitted = self.lastSubmitted {
-                self.displayedLastSubmitted = self.format(duration: Date().timeIntervalSince(lastSubmitted))
-            } else {
-                self.displayedLastSubmitted = "Ausstehend"
-            }
-        }
-    }
-    
     func postDroplet() {
         let droplet = Droplet(postalCode: currentPostalCode, yearOfBirth: currentYearOfBirth, gender: currentGender, healthState: currentHealthState, temperature: currentTemperature, coughing: currentCoughing)
         
@@ -53,15 +33,6 @@ class PostDropletVM: ObservableObject {
                 print("Posting the droplet failed, response is \(String(describing: response))")
             }
         })
-    }
-    
-    func format(duration: TimeInterval) -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day, .hour, .minute, .second]
-        formatter.unitsStyle = .short
-        formatter.maximumUnitCount = 1
-
-        return formatter.string(from: duration)!
     }
     
 }

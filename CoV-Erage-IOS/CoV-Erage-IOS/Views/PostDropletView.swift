@@ -10,6 +10,8 @@ import SwiftUI
 
 struct PostDropletView: View {
     
+    @Binding var isPresented: Bool
+    let startscreenVM: StartscreenVM?
     @ObservedObject private var postDropletVM = PostDropletVM()
     
     var body: some View {
@@ -57,30 +59,19 @@ struct PostDropletView: View {
                         
                     }
                     
-                    Section(header: Text("Übertragungsstatus").font(.body)) {
-                        HStack(alignment: .center) {
-                            Text("Übertragen vor: ")
-                            Spacer()
-                            Text(self.postDropletVM.displayedLastSubmitted)
-                                .font(.title)
-                                .foregroundColor(Color.green)
-                            Spacer()
-                        }.padding(10)
-
-                    }
-                    
                 }
                 
                 HStack {
                     Button("Absenden") {
                         self.postDropletVM.postDroplet()
-                        self.postDropletVM.updateSubmittedTime()
+                        self.isPresented = false
+                        self.startscreenVM?.updateSubmittedStats()
                     }
                 }.padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
                 .foregroundColor(Color.white)
                 .background(Color(red: 46/255, green: 204/255, blue: 113/255))
                 .cornerRadius(10)
-            }.navigationBarTitle("CoV-erage")
+            }.navigationBarTitle("Tägliche Umfrage")
             
         }
     }
@@ -94,6 +85,6 @@ extension Double {
 
 struct PostDropletView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDropletView()
+        PostDropletView(isPresented: .constant(false), startscreenVM: nil)
     }
 }
