@@ -2,14 +2,13 @@ import com.amazonaws.auth.PropertiesFileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
-import com.amazonaws.services.dynamodbv2.document.Item;
-import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.*;
+import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.FileWriter;
+import java.util.*;
 //Code based on https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AppendixSampleDataCodeJava.html
 
 public class Main {
@@ -23,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
         deleteTable("TestLake");
         createTable("TestLake", 5, 5, "id", "S", "timestamp", "S");
-        loadSampleDroplets("TestLake", 1000);
+        loadSampleDroplets("TestLake", 10000);
     }
 
     private static void deleteTable(String tableName) {
@@ -109,6 +108,5 @@ public class Main {
             System.err.println("Failed to create item in " + tableName);
             System.err.println(e.getMessage());
         }
-
     }
 }
