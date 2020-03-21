@@ -180,3 +180,5 @@ Pods/
 /datagenerator/AwsCredentials.properties
 /datagenerator/.idea
 /datagenerator/*.iml
+/.idea
+/analytics/.idea
