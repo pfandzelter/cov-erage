@@ -12,7 +12,7 @@ struct PostDropletView: View {
     
     @Binding var isPresented: Bool
     let startscreenVM: StartscreenVM?
-    @ObservedObject private var postDropletVM = PostDropletVM()
+    @ObservedObject var postDropletVM: PostDropletVM
     
     var body: some View {
         NavigationView {
@@ -26,9 +26,8 @@ struct PostDropletView: View {
                 
                 HStack {
                     Button("Absenden") {
-                        self.postDropletVM.postDroplet()
+                        self.postDropletVM.postDroplet(startscreenVM: self.startscreenVM)
                         self.isPresented = false
-                        self.startscreenVM?.updateSubmittedStats()
                     }
                 }.padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
                 .foregroundColor(Color.white)
@@ -51,7 +50,7 @@ extension Double {
 
 struct PostDropletView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDropletView(isPresented: .constant(false), startscreenVM: nil)
+        PostDropletView(isPresented: .constant(false), startscreenVM: nil, postDropletVM: PostDropletVM())
     }
 }
 
@@ -60,8 +59,14 @@ struct AboutYouView: View {
     @ObservedObject var postDropletVM: PostDropletVM
     
     var body: some View {
-        Section(header: Text("Über Dich").font(.body)) {
-            Section(header: Text("Geschlecht ").font(.body)) {
+        Section(header: Text("Über Dich (Pflichtfelder)").font(.body), footer:
+            HStack {
+                Spacer()
+                Text("Alle weiteren Felder sind optional.")
+                    .font(.caption)
+                Spacer()
+            }) {
+            Section(header: Text("Geschlecht ").font(.body).fontWeight(.black)) {
                 Picker("",selection: self.$postDropletVM.gender) {
                     Text("Weiblich").tag(1)
                     Text("Männlich").tag(2)
@@ -70,12 +75,15 @@ struct AboutYouView: View {
             }
             HStack {
                 Text("Postleitzahl 🏘: ")
+                    .fontWeight(.black)
                 TextField("Postleitzahl", text: self.$postDropletVM.postalCode).keyboardType(.numberPad)
             }
             HStack {
                 Text("Geburtsjahr 🥳: ")
+                    .fontWeight(.black)
                 TextField("Geburtsjahr", text: self.$postDropletVM.yearOfBirth).keyboardType(.numberPad)
             }
+        
         }
     }
 }
@@ -160,8 +168,8 @@ struct PhysicalSymptombs: View {
             
             Section(header: Text("Durchfall 💩").font(.body)) {
                 Picker("",selection: self.$postDropletVM.diarrhea) {
-                    Text("Ja 🥨").tag(1)
-                    Text("Nein 💦").tag(2)
+                    Text("Ja 💦").tag(1)
+                    Text("Nein 🥨").tag(2)
                 }.pickerStyle(SegmentedPickerStyle())
             }
             

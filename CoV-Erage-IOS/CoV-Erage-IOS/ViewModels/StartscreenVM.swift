@@ -18,7 +18,7 @@ class StartscreenVM : ObservableObject {
     
     func readyToSubmitAgain() -> Bool {
         if let lastSubmitted = self.lastSubmitted {
-            if Date().timeIntervalSince(lastSubmitted) > TimeInterval(60) {
+            if Date().timeIntervalSince(lastSubmitted) > TimeInterval(5) { // TODO change to 1min again
                 return true // more than 1min has past
             } else {
                 return false // time is not up
@@ -26,6 +26,15 @@ class StartscreenVM : ObservableObject {
         } else {
             return true // nothing send yet
         }
+    }
+    
+    func setFailed() {
+        if timer != nil {
+            timer?.invalidate()
+        }
+        
+        self.lastSubmitted = nil
+        self.displayedLastSubmitted = "Fehler"
     }
     
     func updateSubmittedStats() {

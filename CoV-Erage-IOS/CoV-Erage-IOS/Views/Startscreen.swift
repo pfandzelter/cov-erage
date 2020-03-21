@@ -13,6 +13,7 @@ struct Startscreen: View {
     let foregroundColor = Color(red: 0.918, green: 0.949, blue: 0.937, opacity: 1.0)
     
     @ObservedObject var startscreenVM = StartscreenVM()
+    @ObservedObject var postDropletVM = PostDropletVM()
     @State private var showModal: Bool = false
     @State private var showAlert: Bool = false
     
@@ -59,7 +60,7 @@ struct Startscreen: View {
         .edgesIgnoringSafeArea(.all)
         .foregroundColor(foregroundColor)
         .sheet(isPresented: self.$showModal) {
-            PostDropletView(isPresented: self.$showModal, startscreenVM: self.startscreenVM)
+            PostDropletView(isPresented: self.$showModal, startscreenVM: self.startscreenVM, postDropletVM: self.postDropletVM)
          }
         .alert(isPresented: self.$showAlert) {
             Alert(title: Text("Nicht so eilig!"), message: Text("Eine Umfrage jede Minute reicht, danke für deine Mithilfe :)!"), dismissButton: .default(Text("Gerne!")))
