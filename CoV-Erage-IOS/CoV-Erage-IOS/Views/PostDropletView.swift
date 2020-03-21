@@ -43,6 +43,19 @@ struct PostDropletView: View {
                                 Text("Viel").tag(3)
                             }.pickerStyle(SegmentedPickerStyle())
                         }
+                        
+                    }
+                    
+                    Section(header: Text("Übertragungsstatus").font(.body)) {
+                        HStack(alignment: .center) {
+                            Text("Übertragen vor: ")
+                            Spacer()
+                            Text(self.postDropletVM.displayedLastSubmitted)
+                                .font(.title)
+                                .foregroundColor(Color.green)
+                            Spacer()
+                        }.padding(10)
+
                     }
                     
                 }
@@ -50,13 +63,14 @@ struct PostDropletView: View {
                 HStack {
                 Button("Absenden") {
                     self.postDropletVM.postDroplet()
+                    self.postDropletVM.updateSubmittedTime()
                 }
                     
                 }.padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
                     .foregroundColor(Color.white)
                 .background(Color(red: 46/255, green: 204/255, blue: 113/255))
                 .cornerRadius(10)
-            }.navigationBarTitle("CoV-Erage")
+            }.navigationBarTitle("CoV-erage")
             
         }
     }

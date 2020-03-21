@@ -18,6 +18,7 @@
 		BFE1D161242577D50011AADB /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D160242577D50011AADB /* Droplet.swift */; };
 		BFE1D1642425793F0011AADB /* PostDropletVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D1632425793F0011AADB /* PostDropletVM.swift */; };
 		BFE1D16924257E8F0011AADB /* PostDropletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D16824257E8F0011AADB /* PostDropletView.swift */; };
+		BFE3E49824262EA900A00237 /* LastSubmittedTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3E49724262EA900A00237 /* LastSubmittedTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BFE1D160242577D50011AADB /* Droplet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
 		BFE1D1632425793F0011AADB /* PostDropletVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDropletVM.swift; sourceTree = "<group>"; };
 		BFE1D16824257E8F0011AADB /* PostDropletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDropletView.swift; sourceTree = "<group>"; };
+		BFE3E49724262EA900A00237 /* LastSubmittedTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSubmittedTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				BFE1D14A242577130011AADB /* ContentView.swift */,
 				BFE1D16824257E8F0011AADB /* PostDropletView.swift */,
+				BFE3E49724262EA900A00237 /* LastSubmittedTimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				BFE1D1642425793F0011AADB /* PostDropletVM.swift in Sources */,
 				BFE1D147242577130011AADB /* AppDelegate.swift in Sources */,
 				BFE1D16924257E8F0011AADB /* PostDropletView.swift in Sources */,
+				BFE3E49824262EA900A00237 /* LastSubmittedTimerView.swift in Sources */,
 				BFE1D149242577130011AADB /* SceneDelegate.swift in Sources */,
 				BFE1D15C242577600011AADB /* Webservice.swift in Sources */,
 				BFE1D15F242577AF0011AADB /* PostDropletResponse.swift in Sources */,
@@ -345,7 +349,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mobile.corona.computing.CoV-Erage-IOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CoV-Erage-IOS";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,7 +368,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mobile.corona.computing.CoV-Erage-IOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CoV-Erage-IOS";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
