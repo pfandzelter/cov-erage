@@ -19,8 +19,16 @@ struct PostDropletView: View {
                     
                     Section(header: Text("Über Dich").font(.body)) {
                         TextField("Geschlecht", text: self.$postDropletVM.currentGender)
-                        TextField("Postleitzahl", value: self.$postDropletVM.currentPostalCode, formatter: NumberFormatter())
-                        TextField("Geburtsjahr", value: self.$postDropletVM.currentYearOfBirth, formatter: NumberFormatter())
+                        
+                        HStack {
+                            Text("Postleitzahl: ")
+                            TextField("Postleitzahl", value: self.$postDropletVM.currentPostalCode, formatter: NumberFormatter())
+                        }
+                        
+                        HStack {
+                            Text("Geburtsjahr: ")
+                            TextField("Geburtsjahr", value: self.$postDropletVM.currentYearOfBirth, formatter: NumberFormatter())
+                        }
                     }
                     
                     Section(header: Text("Gesundheitszustand").font(.body)) {
@@ -34,7 +42,10 @@ struct PostDropletView: View {
                             }.pickerStyle(SegmentedPickerStyle())
                         }
                         
-                        TextField("Temperatur", text: self.$postDropletVM.currentTemperatureText)
+                        HStack {
+                            Text("Temperatur: \(self.postDropletVM.currentTemperature.formatted())° C")
+                            Slider(value: self.$postDropletVM.currentTemperature, in: 30...45, step: 0.1)
+                        }
                         
                         Section(header: Text("Husten").font(.body)) {
                             Picker("",selection: self.$postDropletVM.currentCoughing) {
@@ -61,18 +72,23 @@ struct PostDropletView: View {
                 }
                 
                 HStack {
-                Button("Absenden") {
-                    self.postDropletVM.postDroplet()
-                    self.postDropletVM.updateSubmittedTime()
-                }
-                    
+                    Button("Absenden") {
+                        self.postDropletVM.postDroplet()
+                        self.postDropletVM.updateSubmittedTime()
+                    }
                 }.padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
-                    .foregroundColor(Color.white)
+                .foregroundColor(Color.white)
                 .background(Color(red: 46/255, green: 204/255, blue: 113/255))
                 .cornerRadius(10)
             }.navigationBarTitle("CoV-erage")
             
         }
+    }
+}
+
+extension Double {
+    func formatted() -> String {
+        return String(format: "%.1f", self)
     }
 }
 

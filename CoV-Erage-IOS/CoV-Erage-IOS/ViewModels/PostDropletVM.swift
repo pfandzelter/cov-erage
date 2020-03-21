@@ -14,7 +14,7 @@ class PostDropletVM: ObservableObject {
     var currentYearOfBirth: Int = 1990
     var currentGender: String = ""
     @Published var currentHealthState: Int = 4
-    var currentTemperatureText: String = "37.4"
+    @Published var currentTemperature: Double = 36.5
     @Published var currentCoughing: Int = 2
         
     private let webservice: Webservice
@@ -44,9 +44,7 @@ class PostDropletVM: ObservableObject {
     }
     
     func postDroplet() {
-        let temperature = Double(self.currentTemperatureText) ?? 0.0
-        
-        let droplet = Droplet(postalCode: currentPostalCode, yearOfBirth: currentYearOfBirth, gender: currentGender, healthState: currentHealthState, temperature: temperature, coughing: currentCoughing)
+        let droplet = Droplet(postalCode: currentPostalCode, yearOfBirth: currentYearOfBirth, gender: currentGender, healthState: currentHealthState, temperature: currentTemperature, coughing: currentCoughing)
         
         self.webservice.postDroplet(droplet: droplet, completion: { response in
             if (response?.statusCode == 200) {
