@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF4F324324267A7B002D1ED9 /* Startscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F324224267A7B002D1ED9 /* Startscreen.swift */; };
+		BF4F324524268601002D1ED9 /* StartscreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F324424268601002D1ED9 /* StartscreenVM.swift */; };
 		BFE1D147242577130011AADB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D146242577130011AADB /* AppDelegate.swift */; };
 		BFE1D149242577130011AADB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D148242577130011AADB /* SceneDelegate.swift */; };
 		BFE1D14B242577130011AADB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D14A242577130011AADB /* ContentView.swift */; };
@@ -18,10 +20,11 @@
 		BFE1D161242577D50011AADB /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D160242577D50011AADB /* Droplet.swift */; };
 		BFE1D1642425793F0011AADB /* PostDropletVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D1632425793F0011AADB /* PostDropletVM.swift */; };
 		BFE1D16924257E8F0011AADB /* PostDropletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1D16824257E8F0011AADB /* PostDropletView.swift */; };
-		BFE3E49824262EA900A00237 /* LastSubmittedTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3E49724262EA900A00237 /* LastSubmittedTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF4F324224267A7B002D1ED9 /* Startscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startscreen.swift; sourceTree = "<group>"; };
+		BF4F324424268601002D1ED9 /* StartscreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartscreenVM.swift; sourceTree = "<group>"; };
 		BFE1D143242577130011AADB /* CoV-Erage-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoV-Erage-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE1D146242577130011AADB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE1D148242577130011AADB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +38,6 @@
 		BFE1D160242577D50011AADB /* Droplet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
 		BFE1D1632425793F0011AADB /* PostDropletVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDropletVM.swift; sourceTree = "<group>"; };
 		BFE1D16824257E8F0011AADB /* PostDropletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDropletView.swift; sourceTree = "<group>"; };
-		BFE3E49724262EA900A00237 /* LastSubmittedTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSubmittedTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE1D1632425793F0011AADB /* PostDropletVM.swift */,
+				BF4F324424268601002D1ED9 /* StartscreenVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -120,7 +123,7 @@
 			children = (
 				BFE1D14A242577130011AADB /* ContentView.swift */,
 				BFE1D16824257E8F0011AADB /* PostDropletView.swift */,
-				BFE3E49724262EA900A00237 /* LastSubmittedTimerView.swift */,
+				BF4F324224267A7B002D1ED9 /* Startscreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,11 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4F324324267A7B002D1ED9 /* Startscreen.swift in Sources */,
 				BFE1D1642425793F0011AADB /* PostDropletVM.swift in Sources */,
 				BFE1D147242577130011AADB /* AppDelegate.swift in Sources */,
 				BFE1D16924257E8F0011AADB /* PostDropletView.swift in Sources */,
-				BFE3E49824262EA900A00237 /* LastSubmittedTimerView.swift in Sources */,
 				BFE1D149242577130011AADB /* SceneDelegate.swift in Sources */,
+				BF4F324524268601002D1ED9 /* StartscreenVM.swift in Sources */,
 				BFE1D15C242577600011AADB /* Webservice.swift in Sources */,
 				BFE1D15F242577AF0011AADB /* PostDropletResponse.swift in Sources */,
 				BFE1D161242577D50011AADB /* Droplet.swift in Sources */,
