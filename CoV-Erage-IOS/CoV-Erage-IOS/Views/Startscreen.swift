@@ -10,7 +10,8 @@ import SwiftUI
 
 struct Startscreen: View {
         
-    let foregroundColor = Color(red: 0.918, green: 0.949, blue: 0.937, opacity: 1.0)
+    let foregroundColor = Color.white
+    let backgroundColor = Color(red: 0.145, green: 0.349, blue: 0.341, opacity: 1.0)
     
     @ObservedObject var startscreenVM = StartscreenVM()
     @ObservedObject var postDropletVM = PostDropletVM()
@@ -38,7 +39,8 @@ struct Startscreen: View {
                 Spacer()
                 Text(self.startscreenVM.displayedLastSubmitted)
                     .font(.largeTitle)
-                    .foregroundColor(Color.green)
+                    .fontWeight(.regular)
+                    .foregroundColor(foregroundColor)
                 Spacer()
             }
             
@@ -51,12 +53,12 @@ struct Startscreen: View {
             }
             .padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
             .frame(maxWidth: .infinity)
-            .foregroundColor(Color.white)
-            .background(Color(red: 46/255, green: 204/255, blue: 113/255))
+            .foregroundColor(backgroundColor)
+            .background(foregroundColor)
             .cornerRadius(10)
             .padding(.bottom)
         }
-        .background(Color(red: 0.569, green: 0.184, blue: 0.337, opacity: 1.0))
+        .background(backgroundColor)
         .edgesIgnoringSafeArea(.all)
         .foregroundColor(foregroundColor)
         .sheet(isPresented: self.$showModal) {

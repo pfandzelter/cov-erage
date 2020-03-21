@@ -18,7 +18,7 @@ class StartscreenVM : ObservableObject {
     
     func readyToSubmitAgain() -> Bool {
         if let lastSubmitted = self.lastSubmitted {
-            if Date().timeIntervalSince(lastSubmitted) > TimeInterval(5) { // TODO change to 1min again
+            if Date().timeIntervalSince(lastSubmitted) > TimeInterval(60) {
                 return true // more than 1min has past
             } else {
                 return false // time is not up
