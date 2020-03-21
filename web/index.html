@@ -19,40 +19,49 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+      }
+
+      .card {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .card > * {
+        margin: 1em;
       }
     </style>
     <div id="app">
-      <at-steps v-show="step<11 && step>8" :current="step-9">
-        <at-step title="Gesamt" description=""></at-step>
-        <at-step title="Symptome" description=""></at-step>
-        <at-step title="Prüfen" description=""></at-step>
-      </at-steps>
 
-      <form method="post">
-        <div v-show="step === 1">
+      <form @submit.prevent>
+       <transition name="fade" mode="out-in">
+        <div class="card" v-if="step === 1" key="hello">
           <h1>
-            Hey! Da Du neu bist, brauchen wir ein paar persönliche
+            Hey! 🥳 Da Du neu bist, brauchen wir ein paar persönliche
             Informationen.
           </h1>
-          <at-button size="small" @click.prevent="next()"
+          <at-button type="primary" size="small" @click.prevent="nextstep()"
             >Los geht's!<i class="icon icon-chevron-right"></i
           ></at-button>
         </div>
 
-        <div v-show="step === 2">
+        <div class="card" v-if="step === 2" key="entername">
           <p>
             <at-input
               id="name"
               name="name"
               v-model="user.name"
-              placeholder="Name"
+              placeholder="Vorname"
             />
           </p>
-          <back-button @click.native="prev()"></back-button>
-          <forward-button @click.native="next()"></forward-button>
+          <back-button @click.native.once="prev()"></back-button>
+          <forward-button @click.native.once="nextstep()"></forward-button>
         </div>
 
-        <div v-show="step === 3">
+        <div class="card" v-if="step === 3" key="enterzip">
           <p>
             <at-input
               id="zip"
@@ -61,11 +70,11 @@
               placeholder="Postleitzahl"
             />
           </p>
-          <back-button @click.native="prev()"></back-button>
-          <forward-button @click.native="next()"></forward-button>
+          <back-button @click.native.once="prev()"></back-button>
+          <forward-button @click.native.once="nextstep()"></forward-button>
         </div>
 
-        <div v-show="step === 4">
+        <div class="card" v-if="step === 4" key="enterbirthdate">
           <p>
             <at-input
               id="birth_year"
@@ -74,128 +83,151 @@
               placeholder="Geburtsjahr"
             />
           </p>
-          <back-button @click.native="prev()"></back-button>
-          <forward-button @click.native="next()"></forward-button>
+          <back-button @click.native.once="prev()"></back-button>
+          <forward-button @click.native.once="nextstep()"></forward-button>
         </div>
 
-        <div v-show="step === 5">
+        <div class="card" v-if="step === 5" key="entergender">
           <p>
-            <legend for="name">Dein Geschlecht:</legend>
+            <legend for="gender">Dein Geschlecht:</legend>
             <at-radio-group v-model="user.gender">
               <at-radio-button
-                @click.native="next()"
+                @click.native.once="nextstep()"
                 label="female"
                 value="female"
-                >Weiblich</at-radio-button
+                >Weiblich 🚺</at-radio-button
               >
-              <at-radio-button @click.native="next()" label="male" value="male"
-                >Männlich</at-radio-button
+              <at-radio-button @click.native.once="nextstep()" label="male" value="male"
+                >Männlich 🚹</at-radio-button
               >
               <at-radio-button
-                @click.native="next()"
+                @click.native.once="nextstep()"
                 label="other"
                 value="other"
-                >Anderes</at-radio-button
+                >Anderes 🚻</at-radio-button
               >
             </at-radio-group>
-            <label for="other">Anders</label>
           </p>
-          <back-button @click.native="prev()"></back-button>
+          <back-button @click.native.once="prev()"></back-button>
         </div>
 
-        <div v-show="step === 6">
+        <div class="card" v-if="step === 6" key="entercond">
+          <legend for="preex_cond">Hast Du Vorerkrankungen?</legend>
           <at-select v-model="user.preex_cond" multiple style="width: 240px">
             <at-option value="asthma">Asthma</at-option>
             <at-option value="cancer">Krebs</at-option>
             <at-option value="depression">Depressionen</at-option>
           </at-select>
-          <back-button @click.native="prev()"></back-button>
-          <forward-button @click.native="next()"></forward-button>
+          <back-button @click.native.once="prev()"></back-button>
+          <forward-button @click.native.once="nextstep()"></forward-button>
         </div>
 
-        <div v-show="step === 7">
+        <div class="card" v-if="step === 7" key="checkpersdata">
           <h1>
             Bitte prüfe deine Daten:
           </h1>
-          <p>{{user}}</p>
-          <back-button @click.native="prev()"></back-button>
-          <forward-button @click.native="persist()"></forward-button>
+          <p>Vorname: {{user.name}}</p>
+          <p>PLZ: {{user.zip}}</p>
+          <p>Geschlecht: {{user.gender}}</p>
+          <p>Geburtsjahr: {{user.birth_year}}</p>
+          <p>Vorerkrankungen:</p>
+          <li v-for="cond in user.preex_cond" :key="user.preex_cond">
+              {{ cond }}
+          </li>
+          <back-button @click.native.once="prev()"></back-button>
+          <forward-button @click.native.once="persist()"></forward-button>
         </div>
 
-        <div v-show="step === 8">
+        <div class="card" v-if="step === 8" key="welcome">
           <h1>
-            Hey {{ user.name }}! Schön, dass Du da bist.
+            Hey {{ user.name }}! Schön, dass Du da bist. 🥳
           </h1>
-          <at-button @click.prevent="next()">
+          <at-button type="primary" @click.prevent="nextstep()">
             Jetzt Deine Symptome eintragen!
           </at-button>
         </div>
 
-        <div v-show="step === 9">
+        <div class="card" v-if="step === 9" key="enterfeeling">
           <p>
             <legend for="name">Wie fühlst Du dich heute?</legend>
             <at-radio-group v-model="entry.feeling">
-              <at-radio-button @click.native="next()" label="good" value="3"
-                >Gut</at-radio-button
+              <at-radio-button @click.native.once="nextstep()" label="good" value="3"
+                >Gut 🤩</at-radio-button
               >
-              <at-radio-button @click.native="next()" label="ok" value="2"
-                >OK</at-radio-button
+              <at-radio-button @click.native.once="nextstep()" label="ok" value="2"
+                >OK 😕</at-radio-button
               >
-              <at-radio-button @click.native="next()" label="bad" value="1"
-                >Schlecht</at-radio-button
+              <at-radio-button @click.native.once="nextstep()" label="bad" value="1"
+                >Schlecht 😣</at-radio-button
               >
             </at-radio-group>
           </p>
-          <back-button @click.native="prev()"></back-button>
+          <back-button @click.native.once="prev()"></back-button>
         </div>
 
-        <div v-show="step === 10">
+        <div class="card" v-if="step === 10" key="entersymptoms" v-bind:key="symptomstep">
           <p>
-            <legend for="name">Hast du {{symptoms[symptomstep]}}?</legend>
-            <at-radio-group v-model="entry[symptoms[symptomstep]]">
+            <legend for="name">Hast du {{symptoms[symptomstep][0]}}?</legend>
+            <at-radio-group v-model="entry.symptoms[symptoms[symptomstep][1]]">
               <at-radio-button
-                @click.native="nextsymptom()"
+                @click.native.once="nextsymptom()"
                 label="no"
                 value="1"
                 >Nein</at-radio-button
               >
               <at-radio-button
-                @click.native="nextsymptom()"
+                @click.native.once="nextsymptom()"
                 label="light"
                 value="2"
                 >Leicht</at-radio-button
               >
               <at-radio-button
-                @click.native="nextsymptom()"
+                @click.native.once="nextsymptom()"
                 label="strong"
                 value="3"
                 >Stark</at-radio-button
               >
             </at-radio-group>
           </p>
-          <back-button @click.native="prevsymptom()"></back-button>
+          <back-button @click.native.once="prevsymptom()"></back-button>
         </div>
 
-        <div v-show="step === 11">
+        <div class="card" v-if="step === 11" key="checksymptoms">
           <h1>
             Bitte prüfe deine Daten:
           </h1>
-          <p>{{entry}}</p>
-          <back-button @click.native="prev()"></back-button>
-          <forward-button @click.native="submit()"></forward-button>
+          <p>Gesamtzustand: {{entry.feeling}}</p>
+          <p>Symptome:</p>
+          <ul>
+              <li v-for="(symptom, value) in entry.symptoms" :key="entry.symptoms">
+                  {{ symptom }}: {{ value }}
+              </li>
+          </ul>
+          <back-button @click.native.once="prev()"></back-button>
+          <submit-button @click.native.once="submit()"></submit-button>
         </div>
 
-        <div v-show="step === 12">
-          <h1>
-            Danke {{ user.name }}! Deine Daten wurden übermittelt.
+        <div class="card" v-if="step === 12" key="loading">
+          <at-button loading>Loading</at-button>
+        </div>
+
+        <div class="card" v-if="step === 13" key="final">
+          <h1 v-if="submitfailed">
+              Leider konnten Deine Daten nicht übermittelt werden: {{ response }}
+          </h1>
+          <h1 v-if="!submitfailed">
+              Danke {{ user.name }}! Deine Daten wurden übermittelt. 🎉
           </h1>
         </div>
-      </form>
+        </transition>
+        </form>
+    </br>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
     <script src="//cdn.jsdelivr.net/npm/at-ui/dist/at.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://unpkg.com/uuid"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
