@@ -131,10 +131,24 @@ header.masthead .bg-circle {
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #c6c7c4 !important;
-  border-color: #c6c7c4 !important;
+  background-color: #cc5500 !important;
+  border-color: #cc5500 !important;
 }
 
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem #c6c7c4;
+  box-shadow: 0 0 0 0.2rem #cc5500;
+}
+
+.btn-secondary {
+  background-color: #255957;
+  border-color: #255957;
+}
+
+.btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
+  background-color: #cc5500 !important;
+  border-color: #cc5500 !important;
+}
+
+.btn-secondary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
 }
