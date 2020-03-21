@@ -33,7 +33,7 @@ class PostDropletVM: ObservableObject {
         self.webservice = Webservice()
     }
     
-    func postDroplet() {
+    func postDroplet(startscreenVM: StartscreenVM?) {
         
         var dYearOfBirth: Int = -1
         if yearOfBirth != "" {
@@ -50,8 +50,10 @@ class PostDropletVM: ObservableObject {
         self.webservice.postDroplet(droplet: droplet, completion: { response in
             if (response?.statusCode == 200) {
                 print("Posting the droplet succeded")
+                startscreenVM?.updateSubmittedStats()
             } else {
                 print("Posting the droplet failed, response is \(String(describing: response))")
+                startscreenVM?.setFailed()
             }
         })
     }
