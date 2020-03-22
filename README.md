@@ -1,4 +1,4 @@
-![Coverage Logo](./coverage-inv.png)
+[![CoV-erage Video](https://img.youtube.com/vi/8S1JJoFSa7A/0.jpg)](https://www.youtube.com/watch?v=8S1JJoFSa7A)
 
 Jetzt anschauen auf [cov-erage.pfandzelter.com](https://cov-erage.pfandzelter.com)!
 
