@@ -17,12 +17,8 @@ h6 {
   font-weight: 800 !important;
 }
 
-div .order-lg-1 {
-  text-align: right;
-}
-
-div .order-lg-2 {
-  text-align: left;
+div .col-lg-6 {
+  text-align: center
 }
 
 p>a {
@@ -32,6 +28,16 @@ p>a {
 
 p>a:hover {
   color: #cc5500;
+}
+
+.download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.download>a {
+  margin: 10px;
 }
 
 #logo {
