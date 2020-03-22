@@ -12,45 +12,41 @@ function timeout(ms) {
 }
 
 let fwdbutton = Vue.component("forward-button", {
-  template:
-    '<at-button>Weiter<i class="icon icon-chevron-right"></i></at-button>'
+  template: '<at-button>Weiter<i class="icon icon-chevron-right"></i></at-button>'
 });
 
 let backbutton = Vue.component("back-button", {
-  template:
-    '<at-button type="text"><i class="icon icon-chevron-left"></i>Zurück</at-button>'
+  template: '<at-button type="text"><i class="icon icon-chevron-left"></i>Zurück</at-button>'
 });
 
 let submitbutton = Vue.component("submit-button", {
-  template:
-    '<at-button type="primary">Absenden<i class="icon icon-chevrons-right"></i></at-button>'
+  template: '<at-button type="primary">Absenden<i class="icon icon-chevrons-right"></i></at-button>'
 });
 
 let v = new Vue({
   el: "#app",
   data: () => ({
     step: 1,
-    symptomstep: 0,
-    symptoms: [
-      ["Husten 😷", "cough"],
-      ["Schlafmangel 🥱", "insomnia"],
-      ["Einsamkeit 😪", "loneliness "],
-      ["Übelkeit 🤢", "sickness"],
-      ["Fieber 🤒", "temperature"],
-      ["Schnupfen 🤧", "sneezing"],
-      ["Erschöpfung 😴", "exhaustion"]
-    ],
     entry: {
-      feeling: 0,
-      symptoms: {}
+      generalHealth: 5,
+      coronaVirus: -1,
+      numberOfContacts: 2,
+      coughing: -1,
+      temperature: -1,
+      headache: -1,
+      soreThroat: -1,
+      runnyNose: -1,
+      limbPain: -1,
+      diarrhea: -1,
+      loneliness: -1,
+      insomnia: -1
     },
     user: {
       id: null,
       name: null,
-      zip: null,
-      birth_year: null,
-      preex_cond: [],
-      gender: null
+      zip: "00000",
+      birth_year: 1900,
+      gender: -1
     },
     response: null,
     submitfailed: false
@@ -62,7 +58,7 @@ let v = new Vue({
   },
   mounted() {
     if (localStorage.user) {
-      this.step = 8;
+      this.step = 7;
       this.user = JSON.parse(localStorage.user);
     } else {
       this.user.id = uuidv4();
@@ -85,34 +81,29 @@ let v = new Vue({
       console.log(this.step);
       this.step++;
     },
-    async nextsymptom() {
-      await timeout(250);
-      if (this.symptomstep < this.symptoms.length - 1) {
-        this.symptomstep++;
-      } else {
-        this.nextstep();
-      }
-    },
-    prevsymptom() {
-      if (this.symptomstep > 0) {
-        this.symptomstep--;
-      } else {
-        this.prev();
-      }
-    },
     submit() {
       let droplet = {
+        userId: this.id,
         postalCode: this.user.zip,
         yearOfBirth: this.user.birth_year,
         gender: this.user.gender,
-        healthState: this.entry.feeling,
-        symptoms: this.entry.symptoms
+        generalHealth: this.generalHealth,
+        coronaVirus: this.coronaVirus,
+        numberOfContacts: this.numberOfContacts,
+        coughing: this.coughing,
+        temperature: this.temperature,
+        headache: this.headache,
+        soreThroat: this.soreThroat,
+        runnyNose: this.runnyNose,
+        limbPain: this.limbPain,
+        diarrhea: this.diarrhea,
+        loneliness: this.loneliness,
+        insomnia: this.insomnia
       };
 
       axios({
         method: "post",
-        url:
-          "https://aiulvempz3.execute-api.eu-central-1.amazonaws.com/production/droplet",
+        url: "https://aiulvempz3.execute-api.eu-central-1.amazonaws.com/production/droplet",
         data: droplet,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
