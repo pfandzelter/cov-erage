@@ -1,6 +1,7 @@
 .DS_Store
-analytics/coronavirus.pdf
+analytics/*.pdf
 analytics/Postleitzahlen.csv
+TestLake1Mio*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
