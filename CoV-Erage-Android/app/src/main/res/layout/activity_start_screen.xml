@@ -26,8 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginRight="30px"
-            android:layout_marginLeft="30px"
+            android:layout_marginRight="10pt"
+            android:layout_marginLeft="10pt"
             android:layout_marginBottom="5pt">
             <TextView
                 android:id="@+id/textViewGesamt"
@@ -44,15 +44,15 @@
                 android:textColor="@color/white"
                 android:textAlignment="viewEnd"
                 android:textSize="9pt"
-                android:text="100" />
+                android:text="41289" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginRight="30px"
-            android:layout_marginLeft="30px">
+            android:layout_marginRight="10pt"
+            android:layout_marginLeft="10pt">
             <TextView
                 android:id="@+id/textViewYours"
                 android:layout_width="wrap_content"
@@ -84,8 +84,8 @@
                 android:textSize="9pt"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="20pt"
-                android:layout_marginRight="30px"
-                android:layout_marginLeft="30px"
+                android:layout_marginRight="10pt"
+                android:layout_marginLeft="10pt"
                 android:text="Einreichen"
                 android:onClick="onSubmitClick"/>
         </LinearLayout>

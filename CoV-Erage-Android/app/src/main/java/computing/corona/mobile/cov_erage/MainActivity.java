@@ -109,7 +109,15 @@ public class MainActivity extends AppCompatActivity {
         postLeitZahlEditText = findViewById(R.id.postleitzahlEditText);
         postLeitZahlEditText.setText(postalCode);
 
-        genderSpinner = findViewById(R.id.geschlechtSpinner);
+        genderSpinner = (Spinner) findViewById(R.id.geschlechtSpinner);
+        String[] values = getResources().getStringArray(R.array.gender);
+        // changing an ArrayAdapter
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        genderSpinner.setAdapter(spinnerArrayAdapter);
+
         if (gender > 0) {
             genderSpinner.setSelection(gender);
         } else {
@@ -122,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 1900; i <= thisYear; i++) {
             years.add(Integer.toString(i));
         }
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, years);
 
         yearOfBirthSpinner = (Spinner)findViewById(R.id.yearOfBirthSpinner);
         yearOfBirthSpinner.setAdapter(adapter);
@@ -136,7 +144,13 @@ public class MainActivity extends AppCompatActivity {
         generalHealthSeekbar = findViewById(R.id.generalHealthSeekbar);
         generalHealthSeekbar.setProgress(generalHealth);
 
-        coronaVirusSpinner = findViewById(R.id.coronaVirusSpinner);
+        coronaVirusSpinner = (Spinner) findViewById(R.id.coronaVirusSpinner);
+        values = getResources().getStringArray(R.array.coronaVirus);
+        ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter2.setDropDownViewResource(R.layout.spinner_item);
+        coronaVirusSpinner.setAdapter(spinnerArrayAdapter2);
         if (coronaVirus > 0) {
             coronaVirusSpinner.setSelection(coronaVirus);
         } else {
@@ -148,63 +162,117 @@ public class MainActivity extends AppCompatActivity {
             numberOfContactsEditText.setText(numberOfContacts + "");
         }
 
-        coughingSpinner = findViewById(R.id.coughingSpinner);
+        coughingSpinner = (Spinner) findViewById(R.id.coughingSpinner);
+        values = getResources().getStringArray(R.array.coughing);
+        ArrayAdapter<String> spinnerArrayAdapter3 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter3.setDropDownViewResource(R.layout.spinner_item);
+        coughingSpinner.setAdapter(spinnerArrayAdapter3);
         if (coughing > 0) {
             coughingSpinner.setSelection(coughing);
         } else {
             coughingSpinner.setSelection(0);
         }
 
-        temperatureSpinner = findViewById(R.id.temperatureSpinner);
+        temperatureSpinner = (Spinner) findViewById(R.id.temperatureSpinner);
+        values = getResources().getStringArray(R.array.temperature);
+        ArrayAdapter<String> spinnerArrayAdapter4 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter4.setDropDownViewResource(R.layout.spinner_item);
+        temperatureSpinner.setAdapter(spinnerArrayAdapter4);
         if (temperature > 0) {
             temperatureSpinner.setSelection(temperature);
         } else {
             temperatureSpinner.setSelection(0);
         }
 
-        headacheSpinner = findViewById(R.id.headacheSpinner);
+        headacheSpinner = (Spinner) findViewById(R.id.headacheSpinner);
+        values = getResources().getStringArray(R.array.headache);
+        ArrayAdapter<String> spinnerArrayAdapter5 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter5.setDropDownViewResource(R.layout.spinner_item);
+        headacheSpinner.setAdapter(spinnerArrayAdapter5);
         if (headache > 0) {
             headacheSpinner.setSelection(headache);
         } else {
             headacheSpinner.setSelection(0);
         }
 
-        soreThroatSpinner = findViewById(R.id.soreThroatSpinner);
+        soreThroatSpinner = (Spinner) findViewById(R.id.soreThroatSpinner);
+        values = getResources().getStringArray(R.array.headache);
+        ArrayAdapter<String> spinnerArrayAdapter6 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter6.setDropDownViewResource(R.layout.spinner_item);
+        soreThroatSpinner.setAdapter(spinnerArrayAdapter6);
         if (soreThroat > 0) {
             soreThroatSpinner.setSelection(soreThroat);
         } else {
             soreThroatSpinner.setSelection(0);
         }
 
-        runnyNoseSpinner = findViewById(R.id.runnyNoseSpinner);
+        runnyNoseSpinner = (Spinner) findViewById(R.id.runnyNoseSpinner);
+        values = getResources().getStringArray(R.array.headache);
+        ArrayAdapter<String> spinnerArrayAdapter7 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter7.setDropDownViewResource(R.layout.spinner_item);
+        runnyNoseSpinner.setAdapter(spinnerArrayAdapter7);
         if (runnyNose > 0) {
             runnyNoseSpinner.setSelection(runnyNose);
         } else {
             runnyNoseSpinner.setSelection(0);
         }
 
-        limbPainSpinner = findViewById(R.id.limbPainSpinner);
+        limbPainSpinner = (Spinner) findViewById(R.id.limbPainSpinner);
+        values = getResources().getStringArray(R.array.headache);
+        ArrayAdapter<String> spinnerArrayAdapter8 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter8.setDropDownViewResource(R.layout.spinner_item);
+        limbPainSpinner.setAdapter(spinnerArrayAdapter8);
         if (limbPain > 0) {
             limbPainSpinner.setSelection(limbPain);
         } else {
             limbPainSpinner.setSelection(0);
         }
 
-        diarrheaSpinner = findViewById(R.id.diarrheaSpinner);
+        diarrheaSpinner = (Spinner) findViewById(R.id.diarrheaSpinner);
+        values = getResources().getStringArray(R.array.diarrhea);
+        ArrayAdapter<String> spinnerArrayAdapter9 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter9.setDropDownViewResource(R.layout.spinner_item);
+        diarrheaSpinner.setAdapter(spinnerArrayAdapter9);
         if (diarrhea > 0) {
             diarrheaSpinner.setSelection(diarrhea);
         } else {
             diarrheaSpinner.setSelection(0);
         }
 
-        lonelinessSpinner = findViewById(R.id.lonelinessSpinner);
+        lonelinessSpinner = (Spinner) findViewById(R.id.lonelinessSpinner);
+        values = getResources().getStringArray(R.array.loneliness);
+        ArrayAdapter<String> spinnerArrayAdapter10 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter10.setDropDownViewResource(R.layout.spinner_item);
+        lonelinessSpinner.setAdapter(spinnerArrayAdapter10);
         if (loneliness > 0) {
             lonelinessSpinner.setSelection(loneliness);
         } else {
             lonelinessSpinner.setSelection(0);
         }
 
-        insomniaSpinner = findViewById(R.id.insomniaSpinner);
+        insomniaSpinner = (Spinner) findViewById(R.id.insomniaSpinner);
+        values = getResources().getStringArray(R.array.insomnia);
+        ArrayAdapter<String> spinnerArrayAdapter11 = new ArrayAdapter<String>(
+                this,R.layout.spinner_item, values
+        );
+        spinnerArrayAdapter11.setDropDownViewResource(R.layout.spinner_item);
+        insomniaSpinner.setAdapter(spinnerArrayAdapter11);
         if (insomnia > 0) {
             insomniaSpinner.setSelection(insomnia);
         } else {
