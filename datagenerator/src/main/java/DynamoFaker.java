@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.util.*;
 //Code based on https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AppendixSampleDataCodeJava.html
 
-public class Main {
+public class DynamoFaker {
 
     static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
             .withCredentials(new PropertiesFileCredentialsProvider("AwsCredentials.properties"))
@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
         deleteTable("TestLake");
         createTable("TestLake", 5, 5, "id", "S", "timestamp", "S");
-        loadSampleDroplets("TestLake", 10000);
+        loadSampleDroplets("TestLake", 100);
     }
 
     private static void deleteTable(String tableName) {
@@ -75,6 +75,7 @@ public class Main {
 
         Table table = dynamoDB.getTable(tableName);
         Faker faker = new Faker();
+        PLZFaker plzFaker = new PLZFaker();
 
 
         try {
@@ -86,7 +87,7 @@ public class Main {
                 Item item = new Item().withPrimaryKey("id", faker.idNumber().valid())
                         .withString("timestamp", "" + new Date().getTime())
                         .withString("userId", faker.artist().name())
-                        .withString("postalCode", "" + faker.number().numberBetween(10000, 99999))
+                        .withString("postalCode", "" + plzFaker.getPlz())
                         .withInt("gender", faker.number().numberBetween(1,4))
                         .withInt("yearOfBirth", faker.number().numberBetween(1950, 2010))
                         .withInt("generalHealth", faker.number().numberBetween(1, 6))

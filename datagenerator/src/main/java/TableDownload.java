@@ -6,8 +6,6 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,7 +21,7 @@ public class TableDownload {
 
 
     public static void main(String[] args) {
-        downloadTable("TestLake", "data.csv");
+        downloadTable("TestLake", "dynamoData.csv");
     }
 
     private static void downloadTable(String tableName, String fileName) {
@@ -57,10 +55,10 @@ public class TableDownload {
                     }
                     switch (type) {
                         case 'S':
-                            line = line + "\"" + entry.get(attributeNames.get(i)).getS() + "\", ";
+                            line = line + "\"" + entry.get(attributeNames.get(i)).getS() + "\",";
                             break;
                         case 'N':
-                            line = line + "\"" + entry.get(attributeNames.get(i)).getN() + "\", ";
+                            line = line + "\"" + entry.get(attributeNames.get(i)).getN() + "\",";
                             break;
                     }
                 }
