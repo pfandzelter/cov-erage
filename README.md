@@ -2,9 +2,11 @@
 
 Jetzt anschauen auf [cov-erage.pfandzelter.com](https://cov-erage.pfandzelter.com)!
 
-Hinterlasst auch gerne ein Like auf [DevPost](https://devpost.com/software/mobile-corona-computing)
+Hinterlasst auch gerne ein Like auf [DevPost](https://devpost.com/software/mobile-corona-computing).
 
 Entstanden im Rahmen des [#WirVsVirus Hackathon](https://www.wirvsvirushackathon.org).
+
+Android-App (Prototyp) verfügbar unter [/CoV-Erage-Android/CoV-erage.apk](/CoV-Erage-Android/CoV-erage.apk).
 
 ## Inspiration
 Die Anzahl der bestätigten COVID-19-Fällen, d.h. die an die Behörden gemeldeten positiven Laborergebnisse, umfasst nur einen Bruchteil der tatsächlich infizierten Menschen, da viele Menschen mit nur geringen Symptomen zu Hause bleiben und sich dort auskurieren. Um einen umfassenden Überblick über die Gesundheitssituation zu erhalten, müssen jedoch auch diese Menschen ins Lagebild aufgenommen werden. Dafür benötigen wir eine leicht zugängliche Ergänzungen zu bestehenden offiziellen Meldesystemen zur direkten und  freiwilligen Selbstmeldung von Symptomen, ggfs. auch für Personen aus der eigenen Familie.
