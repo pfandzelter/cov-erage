@@ -11,6 +11,19 @@ function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function checkZip(zip) {
+  if (v.user.zip == "00000") return true;
+  return !(/^([0-9]{5})$/).test(zip);
+}
+
+function checkName(name) {
+  return !(/^([A-Z][a-z,\-,\ ,\.]{0,40})$/).test(name);
+}
+
+function checkBirth(birthyear) {
+  return !(birthyear >= 1900 && birthyear <= 2020)
+}
+
 let fwdbutton = Vue.component("forward-button", {
   template: '<at-button>Weiter<i class="icon icon-chevron-right"></i></at-button>'
 });
@@ -63,38 +76,39 @@ let v = new Vue({
   },
   computed: {
     invalidName: () => {
-      return !(/^([A-Z][a-z,\-,\ ,\.]{0,40})$/).test(v.user.name);
+      return checkName(v.user.name);
     },
     invalidZIP: () => {
-      if (v.user.zip == "00000") return true;
-      return !(/^([0-9]{5})$/).test(v.user.zip);
+      return checkZip(v.user.zip);
     },
     invalidBirth: () => {
-      console.log(v.user.birth_year)
-      return !(v.user.birth_year >= 1900 && v.user.birth_year <= 2020)
+      return checkBirth(v.user.birth_year);
     }
   },
   mounted() {
     if (localStorage.user) {
-      this.user = JSON.parse(localStorage.user);
-
-      this.waittime = (24 * 60) - Math.ceil(Math.abs(((new Date()).getTime() - this.user.lastentry)) / (60 * 1000));
-
-      if (this.waittime <= 0) {
-        this.step = 'entry';
-      } else {
-        this.step = 'wait';
-      }
-
-      //update waittime every 10 seconds
-      setInterval(() => {
+      user = JSON.parse(localStorage.user);
+      if (!checkZip(user.zip) && !checkName(user.name) && !checkBirth(user.birthyear)) {
         this.waittime = (24 * 60) - Math.ceil(Math.abs(((new Date()).getTime() - this.user.lastentry)) / (60 * 1000));
 
-        if (this.step == 'wait' && this.waittime <= 0) {
-          this.entrystep = 0;
+        if (this.waittime <= 0) {
           this.step = 'entry';
+        } else {
+          this.step = 'wait';
         }
-      }, 1000);
+
+        //update waittime every 10 seconds
+        setInterval(() => {
+          this.waittime = (24 * 60) - Math.ceil(Math.abs(((new Date()).getTime() - this.user.lastentry)) / (60 * 1000));
+
+          if (this.step == 'wait' && this.waittime <= 0) {
+            this.entrystep = 0;
+            this.step = 'entry';
+          }
+        }, 1000);
+      } else {
+        this.user.id = uuidv4();
+      }
     } else {
       this.user.id = uuidv4();
     }
