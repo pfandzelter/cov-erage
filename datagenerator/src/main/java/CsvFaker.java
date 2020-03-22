@@ -18,7 +18,7 @@ import java.util.Map;
 public class CsvFaker {
 
     public static void main(String[] args) {
-        createSampleDroplets("csvFaker.csv", 1000);
+        createSampleDroplets("csvFaker.csv", 100000);
     }
 
 
