@@ -7,7 +7,9 @@
     android:animateLayoutChanges="true"
     android:fadingEdgeLength="80dp"
     android:requiresFadingEdge="vertical"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    android:background="@color/colorPrimary"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,22 +17,9 @@
         android:layout_gravity="center_horizontal"
         android:animateLayoutChanges="true"
         android:background="@android:color/transparent"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt"
         android:orientation="vertical">
-        <!--
-        <TextView
-            android:id="@+id/ProfileTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile_title"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="25dp" />
-        -->
 
         <ImageView
             android:layout_width="match_parent"
@@ -39,66 +28,42 @@
             android:adjustViewBounds="true"
             android:background="@color/colorPrimary"
             />
-        <RelativeLayout
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Postleitzahl: "
-                android:textSize="15sp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                />
-            <EditText
-                android:id="@+id/postleitzahlEditText"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:inputType="number"
-                android:maxLength="5"
-                android:hint="z.B. 10999"
-                android:focusedByDefault="false"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                />
-        </RelativeLayout>
+            android:text="Allgemeine Angaben: "
+            android:textSize="12pt"
+            android:textColor="@color/white">
+        </TextView>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/geschlechtText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Geschlecht: "
-                android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
                 />
+
             <Spinner
                 android:id="@+id/geschlechtSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/gender"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                />
+                android:entries="@array/gender"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/geburtsjahrText"
@@ -106,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:text="Geburtsjahr: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textSize="9pt"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -118,62 +84,97 @@
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Postleitzahl: "
+                android:textSize="9pt"
+                android:textColor="@color/white"
+                android:layout_alignParentStart="true"
+                />
+            <EditText
+                android:id="@+id/postleitzahlEditText"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:inputType="number"
+                android:maxLength="5"
+                android:hint="z.B. 10999"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:focusedByDefault="false"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Symptome: "
+            android:textSize="12pt"
+            android:textColor="@color/white">
+        </TextView>
 
         <TextView
             android:id="@+id/wohlbefindenText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Allgemeines Wohlbefinden: "
-            android:textAlignment="center"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="9pt"
+            android:textColor="@color/white"
+            android:layout_marginTop="2pt"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            >
+            android:gravity="center" >
+
             <SeekBar
                 android:id="@+id/generalHealthSeekbar"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:min="1"
-                android:max="5"
-                android:progress="5"
                 android:layout_alignParentTop="true"
-                android:paddingTop="5dp"
-
-                 />
+                android:indeterminate="false"
+                android:max="5"
+                android:min="1"
+                android:paddingTop="2pt"
+                android:progress="5"
+                android:progressTint="@color/white"
+                android:thumb="@android:drawable/btn_star" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/generalHealthSeekbar"
                 android:layout_below="@id/generalHealthSeekbar"
+                android:textColor="@color/white"
+                android:textSize="5pt"
                 android:text="sehr schlecht" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sehr gut"
                 android:layout_alignEnd="@+id/generalHealthSeekbar"
-                android:layout_below="@id/generalHealthSeekbar"/>
+                android:layout_below="@id/generalHealthSeekbar"
+                android:textColor="@color/white"
+                android:textSize="5pt"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_height="wrap_content" >
             <TextView
                 android:id="@+id/coronaText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Corona Virus: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -189,9 +190,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/kontakteText"
@@ -199,7 +197,8 @@
                 android:layout_height="wrap_content"
                 android:text="Anzahl der Kontakte (24h): "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -210,23 +209,25 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:hint="z.B. 2"
+                android:textColor="@color/white"
+                android:textSize="9pt"
+                android:textColorHint="@color/white"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
+
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/hustenTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Husten: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -239,12 +240,11 @@
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/fieberTextView"
@@ -252,7 +252,8 @@
                 android:layout_height="wrap_content"
                 android:text="Fieber: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -268,9 +269,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/kopfschmerzenTextView"
@@ -278,7 +276,8 @@
                 android:layout_height="wrap_content"
                 android:text="Kopfschmerzen: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -294,9 +293,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/halsschmerzenTextView"
@@ -304,7 +300,8 @@
                 android:layout_height="wrap_content"
                 android:text="Halsschmerzen: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -320,9 +317,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/schnupfenTextView"
@@ -330,7 +324,8 @@
                 android:layout_height="wrap_content"
                 android:text="Schnupfen: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -346,9 +341,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/gliederschmerzenTextView"
@@ -356,7 +348,8 @@
                 android:layout_height="wrap_content"
                 android:text="Gliederschmerzen: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -372,9 +365,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/durchfallTextView"
@@ -382,7 +372,8 @@
                 android:layout_height="wrap_content"
                 android:text="Durchfall: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -398,9 +389,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/einsamkeitTextView"
@@ -408,7 +396,8 @@
                 android:layout_height="wrap_content"
                 android:text="Einsamkeit: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
@@ -424,9 +413,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             >
             <TextView
                 android:id="@+id/schlafproblemeTextView"
@@ -434,7 +420,8 @@
                 android:layout_height="wrap_content"
                 android:text="Schlafprobleme: "
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="9pt"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />

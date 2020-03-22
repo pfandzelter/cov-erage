@@ -12,25 +12,25 @@
         <item>ich glaube ja</item>
         <item>positiv getestet</item>
         <item>überstanden</item>
-        <item>weiß ich nicht</item>
+        <item>ich weiß nicht</item>
     </string-array>
     <string-array name="coughing">
         <item>keine Angabe</item>
-        <item>keinen</item>
+        <item>nein</item>
         <item>wenig</item>
-        <item>starken</item>
+        <item>stark</item>
     </string-array>
     <string-array name="temperature">
         <item>keine Angabe</item>
-        <item>kein</item>
+        <item>nein</item>
         <item>etwas</item>
         <item>hoch (>39°C)</item>
     </string-array>
     <string-array name="headache">
         <item>keine Angabe</item>
-        <item>keine</item>
+        <item>nein</item>
         <item>etwas</item>
-        <item>starke</item>
+        <item>stark</item>
     </string-array>
     <string-array name="diarrhea">
         <item>keine Angabe</item>
@@ -39,8 +39,8 @@
     </string-array>
     <string-array name="loneliness">
         <item>keine Angabe</item>
-        <item>kaum auszuhalten</item>
-        <item>ich fühle mich schlecht</item>
+        <item>sehr einsam</item>
+        <item>etwas einsam</item>
         <item>geht so</item>
         <item>komme gut klar</item>
         <item>alles bestens</item>
