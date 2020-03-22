@@ -26,7 +26,10 @@ let submitbutton = Vue.component("submit-button", {
 let v = new Vue({
   el: "#app",
   data: () => ({
-    step: 1,
+    step: "signup",
+    entrystep: 1,
+    signupstep: 1,
+    waittime: 0,
     entry: {
       generalHealth: 5,
       coronaVirus: -1,
@@ -46,7 +49,8 @@ let v = new Vue({
       name: null,
       zip: "00000",
       birth_year: 1900,
-      gender: -1
+      gender: -1,
+      lastentry: new Date(0).getTime()
     },
     response: null,
     submitfailed: false
@@ -58,48 +62,79 @@ let v = new Vue({
   },
   mounted() {
     if (localStorage.user) {
-      this.step = 7;
       this.user = JSON.parse(localStorage.user);
+
+      this.waittime = (24 * 60) - Math.ceil(Math.abs(((new Date()).getTime() - this.user.lastentry)) / (60 * 1000));
+
+      if (this.waittime <= 0) {
+        this.step = 'entry';
+      } else {
+        this.step = 'wait';
+      }
+
+      //update waittime every 10 seconds
+      setInterval(() => {
+        this.waittime = (24 * 60) - Math.ceil(Math.abs(((new Date()).getTime() - this.user.lastentry)) / (60 * 1000));
+
+        if (this.step == 'wait' && this.waittime <= 0) {
+          this.entrystep = 0;
+          this.step = 'entry';
+        }
+      }, 1000);
     } else {
       this.user.id = uuidv4();
     }
   },
   methods: {
-    persist() {
+    persistsignup() {
       localStorage.user = JSON.stringify(this.user);
-      this.next();
+      this.signupstep = 0;
+      this.step = 'entry';
     },
-    prev() {
-      console.log(this.step);
-      this.step--;
+    prevsignup() {
+      this.signupstep--;
+      console.log(this.signupstep);
     },
-    async nextstep() {
+    async nextsignup() {
       await timeout(250);
-      this.next();
+      this.signupstep++;
+      console.log(this.signupstep);
     },
-    next() {
-      console.log(this.step);
-      this.step++;
+    preventry() {
+      this.entrystep--;
+      console.log(this.entrystep);
     },
-    submit() {
+    async nextentry() {
+      await timeout(250);
+      this.nextentrystep();
+    },
+    nextentrystep() {
+      this.entrystep++;
+      console.log(this.entrystep);
+    },
+    submitentry() {
       let droplet = {
-        userId: this.id,
+        userId: this.user.id,
         postalCode: this.user.zip,
         yearOfBirth: this.user.birth_year,
         gender: this.user.gender,
-        generalHealth: this.generalHealth,
-        coronaVirus: this.coronaVirus,
-        numberOfContacts: this.numberOfContacts,
-        coughing: this.coughing,
-        temperature: this.temperature,
-        headache: this.headache,
-        soreThroat: this.soreThroat,
-        runnyNose: this.runnyNose,
-        limbPain: this.limbPain,
-        diarrhea: this.diarrhea,
-        loneliness: this.loneliness,
-        insomnia: this.insomnia
+        generalHealth: this.entry.generalHealth,
+        coronaVirus: this.entry.coronaVirus,
+        numberOfContacts: this.entry.numberOfContacts,
+        coughing: this.entry.coughing,
+        temperature: this.entry.temperature,
+        headache: this.entry.headache,
+        soreThroat: this.entry.soreThroat,
+        runnyNose: this.entry.runnyNose,
+        limbPain: this.entry.limbPain,
+        diarrhea: this.entry.diarrhea,
+        loneliness: this.entry.loneliness,
+        insomnia: this.entry.insomnia
       };
+
+      this.user.lastentry = (new Date()).getTime();
+
+      console.log(droplet)
 
       axios({
         method: "post",
@@ -114,22 +149,23 @@ let v = new Vue({
           console.log(response);
           if (response.status === 200) {
             this.submitfailed = false;
-            this.next();
+            this.nextentry();
+            localStorage.user = JSON.stringify(this.user);
           } else {
             this.submitfailed = true;
             this.response = response.body;
-            this.next();
+            this.nextentry();
           }
         },
         err => {
           console.log(err);
           this.submitfailed = true;
           this.response = err;
-          this.next();
+          this.nextentry();
         }
       );
 
-      this.next();
+      this.nextentry();
     }
   }
 });

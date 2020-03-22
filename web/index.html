@@ -45,66 +45,66 @@
   </style>
   <div id="app">
 
-    <form @submit.prevent>
+    <form @submit.prevent v-if="step === 'signup'">
       <transition name="fade" mode="out-in">
-        <div class="card" v-if="step === 1" key="hello" v-on:keydown.enter="nextstep()" @keydown.enter="nextstep()">
+        <div class="card" v-if="signupstep === 1" key="hello" @keydown.enter="nextsignup()">
           <h1>
             Hey! 🥳 Da Du neu bist, brauchen wir zuerst ein paar persönliche
             Informationen.
           </h1>
-          <at-button type="primary" size="small" @click.prevent="nextstep()">Los geht's!<i class="icon icon-chevron-right"></i></at-button>
+          <at-button type="primary" size="small" @click.prevent="nextsignup()">Los geht's!<i class="icon icon-chevron-right"></i></at-button>
         </div>
 
-        <div class="card" v-if="step === 2" key="entername" @keydown.enter="nextstep()">
+        <div class="card" v-if="signupstep === 2" key="entername" @keydown.enter="nextsignup()">
           <div class="card-inner">
             <h2>Dein Vorname</h2>
             </br>
             <at-input id="name" name="name" v-model="user.name" placeholder="Vorname" />
           </div>
           <div>
-            <back-button @click.native.once="prev()"></back-button>
-            <forward-button @click.native.once="nextstep()"></forward-button>
+            <back-button @click.native.once="prevsignup()"></back-button>
+            <forward-button @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>
 
-        <div class="card" v-if="step === 3" key="enterzip" @keydown.enter="nextstep()">
+        <div class="card" v-if="signupstep === 3" key="enterzip" @keydown.enter="nextsignup()">
           <div class="card-inner">
             <h2>Deine Postleitzahl</h2>
             </br>
             <at-input id="zip" name="zip" v-model="user.zip" placeholder="Postleitzahl" />
           </div>
           <div>
-            <back-button @click.native.once="prev()"></back-button>
-            <forward-button @click.native.once="nextstep()"></forward-button>
+            <back-button @click.native.once="prevsignup()"></back-button>
+            <forward-button @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>
 
-        <div class="card" v-if="step === 4" key="enterbirthdate" @keydown.enter="nextstep()">
+        <div class="card" v-if="signupstep === 4" key="enterbirthdate" @keydown.enter="nextsignup()">
           <div class="card-inner">
             <h2>Dein Geburtsjahr</h2>
             </br>
             <at-input-number v-model="user.birth_year"></at-input-number>
           </div>
           <div>
-            <back-button @click.native.once="prev()"></back-button>
-            <forward-button @click.native.once="nextstep()"></forward-button>
+            <back-button @click.native.once="prevsignup()"></back-button>
+            <forward-button @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>
 
-        <div class="card" v-if="step === 5" key="entergender" @keydown.enter="nextstep()">
+        <div class="card" v-if="signupstep === 5" key="entergender" @keydown.enter="nextsignup()">
           <div class="card-inner">
             <h2>Dein Geschlecht:</h2>
             </br>
             <at-radio-group v-model="user.gender">
-              <at-radio-button @click.native.once="nextstep()" label="female">Weiblich 🚺</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="male">Männlich 🚹</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="other">Anderes 🚻</at-radio-button>
+              <at-radio-button @click.native.once="nextsignup()" label="1">Weiblich 🚺</at-radio-button>
+              <at-radio-button @click.native.once="nextsignup()" label="2">Männlich 🚹</at-radio-button>
+              <at-radio-button @click.native.once="nextsignup()" label="3">Anderes 🚻</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="prevsignup()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 6" key="checkpersdata" @keydown.enter="nextstep()">
+        <div class="card" v-if="signupstep === 6" key="checkpersdata" @keydown.enter="nextsignup()">
           <h1>
             Bitte prüfe deine Daten:
           </h1>
@@ -113,183 +113,187 @@
             Geschlecht: {{user.gender}}</br>
             Geburtsjahr: {{user.birth_year}}</p>
           <div>
-            <back-button @click.native.once="prev()"></back-button>
-            <forward-button @click.native.once="persist()"></forward-button>
+            <back-button @click.native.once="prevsignup()"></back-button>
+            <forward-button @click.native.once="persistsignup()"></forward-button>
           </div>
         </div>
+      </transition>
+    </form>
 
-        <div class="card" v-if="step === 7" key="welcome" on:keydown.enter="nextstep()">
+    <form @submit.prevent v-if="step === 'entry'">
+      <transition name="fade" mode="out-in">
+        <div class="card" v-if="entrystep === 1" key="welcome" on:keydown.enter="nextentry()">
           <h1>
             Hey {{ user.name }}! Schön, dass Du da bist. 🥳
           </h1>
-          <at-button type="primary" @click.prevent="nextstep()">
+          <at-button type="primary" @click.prevent="nextentry()">
             Jetzt Deine Symptome eintragen!
           </at-button>
         </div>
 
-        <div class="card" v-if="step === 8" key="enterfeeling">
+        <div class="card" v-if="entrystep === 2" key="enterfeeling">
           <div class="card-inner">
             <h2>Wie fühlst Du dich heute?</h2>
             </br>
             <at-radio-group v-model="entry.generalHealth">
-              <at-radio-button @click.native.once="nextstep()" label="5">🤩</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="4">🙂</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">😐</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">🙁</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="1">😣</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="5">🤩</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="4">🙂</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">😐</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">🙁</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">😣</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 9" key="coronavirus">
+        <div class="card" v-if="entrystep === 3" key="coronavirus">
           <div class="card-inner">
             <h2>Bist Du mit SARS-CoV-2 (Coronavirus) infiziert? 🦠</h2>
             </br>
             <at-radio-group v-model="entry.coronaVirus">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Ich glaube</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Ja. positiv getestet</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="4">Bereits überstanden</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="5">Ich weiß nicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Ich glaube</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Ja. positiv getestet</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="4">Bereits überstanden</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="5">Ich weiß nicht/keine Angabe</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 10" key="contacts" @keydown.enter="nextstep()">
+        <div class="card" v-if="entrystep === 4" key="contacts" @keydown.enter="nextentry()">
           <div class="card-inner">
             <h2>Mit wievielen Menschen warst Du in den letzten 24h etwa in Kontakt? 👯‍♀️👯‍♂️</h2>
             </br>
             <at-input-number v-model="entry.numberOfContacts" :min="0" :max="1000"></at-input-number>
           </div>
           <div>
-            <back-button @click.native.once="prev()"></back-button>
-            <forward-button @click.native.once="nextstep()"></forward-button>
+            <back-button @click.native.once="preventry()"></back-button>
+            <forward-button @click.native.once="nextentry()"></forward-button>
           </div>
         </div>
 
-        <div class="card" v-if="step === 11" key="coughing">
+        <div class="card" v-if="entrystep === 5" key="coughing">
           <div class="card-inner">
             <h2>Leidest Du an Husten? 😷</h2>
             </br>
             <at-radio-group v-model="entry.coughing">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Leicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Stark</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Leicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Stark</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 12" key="temperature">
+        <div class="card" v-if="entrystep === 6" key="temperature">
           <div class="card-inner">
             <h2>Hast Du Fieber? 🤒</h2>
             </br>
             <at-radio-group v-model="entry.temperature">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Leicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Stark (ab 39°)</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Leicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Stark (ab 39°)</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 13" key="headache">
+        <div class="card" v-if="entrystep === 7" key="headache">
           <div class="card-inner">
             <h2>Kämpfst Du mit Kopfschmerzen? 🤕</h2>
             </br>
             <at-radio-group v-model="entry.headache">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Leicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Stark</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Leicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Stark</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 14" key="soreThroat">
+        <div class="card" v-if="entrystep === 8" key="soreThroat">
           <div class="card-inner">
             <h2>Tut Dein Hals weh? 🧣</h2>
             </br>
             <at-radio-group v-model="entry.soreThroat">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Leicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Stark</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Leicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Stark</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 15" key="runnyNose">
+        <div class="card" v-if="entrystep === 9" key="runnyNose">
           <div class="card-inner">
             <h2>Lāuft Deine Nase? 👃</h2>
             </br>
             <at-radio-group v-model="entry.runnyNose">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Leicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Stark</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Leicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Stark</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 16" key="limbPain">
+        <div class="card" v-if="entrystep === 10" key="limbPain">
           <div class="card-inner">
             <h2>Leidest Du an Gliederschmerzen? 🦵</h2>
             </br>
             <at-radio-group v-model="entry.limbPain">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Leicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Stark</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Leicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Stark</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 17" key="diarrhea">
+        <div class="card" v-if="entrystep === 11" key="diarrhea">
           <div class="card-inner">
             <h2>Hast Du Durchfall? 💩</h2>
             </br>
             <at-radio-group v-model="entry.diarrhea">
-              <at-radio-button @click.native.once="nextstep()" label="1">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Ja</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Ja</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 18" key="loneliness">
+        <div class="card" v-if="entrystep === 12" key="loneliness">
           <div class="card-inner">
             <h2>Fühlst Du dich einsam? 😪</h2>
             </br>
             <at-radio-group v-model="entry.loneliness">
-              <at-radio-button @click.native.once="nextstep()" label="1">Ja, sehr</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Ein wenig</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Es geht schon</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="4">Nein</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="5">Alles super</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Ja, sehr</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Ein wenig</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Es geht schon</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="4">Nein</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="5">Alles super</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 19" key="insomnia">
+        <div class="card" v-if="entrystep === 13" key="insomnia">
           <div class="card-inner">
             <h2>Schläfst Du gut? 🛌</h2>
             </br>
             <at-radio-group v-model="entry.insomnia">
-              <at-radio-button @click.native.once="nextstep()" label="1">Absolut nicht</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="2">Eher weniger</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="3">Es geht schon</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="4">Ja</at-radio-button>
-              <at-radio-button @click.native.once="nextstep()" label="5">Gut wie nie</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="1">Absolut nicht</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="2">Eher weniger</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="3">Es geht schon</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="4">Ja</at-radio-button>
+              <at-radio-button @click.native.once="nextentry()" label="5">Gut wie nie</at-radio-button>
             </at-radio-group>
           </div>
-          <back-button @click.native.once="prev()"></back-button>
+          <back-button @click.native.once="preventry()"></back-button>
         </div>
 
-        <div class="card" v-if="step === 20" key="checksymptoms" @keydown.enter="nextstep()">
+        <div class="card" v-if="entrystep === 14" key="checksymptoms" @keydown.enter="nextentry()">
           <h1>
             Bitte prüfe deine Daten:
           </h1>
@@ -308,26 +312,44 @@
             Schlafprobleme: {{ entry.insomnia }}
             </ul>
             <div>
-              <back-button @click.native.once="prev()"></back-button>
-              <submit-button @click.native.once="submit()"></submit-button>
+              <back-button @click.native.once="preventry()"></back-button>
+              <submit-button @click.native.once="submitentry()"></submit-button>
             </div>
         </div>
 
-        <div class="card" v-if="step === 21" key="loading">
+        <div class="card" v-if="entrystep === 15" key="loading">
           <at-button loading>Loading</at-button>
         </div>
 
-        <div class="card" v-if="step === 22" key="final">
+        <div class="card" v-if="entrystep === 16" key="final">
           <h1 v-if="submitfailed">
             Leider konnten Deine Daten nicht übermittelt werden: {{ response }}
           </h1>
           <h1 v-if="!submitfailed">
-            Danke {{ user.name }}! Deine Daten wurden übermittelt. 🎉
+            Danke {{ user.name }}! Deine Daten wurden übermittelt. 🎉</br>
+            In 24 Stunden kannst Du einen neuen Eintrag machen. ⏰
           </h1>
         </div>
       </transition>
     </form>
-    </br>
+
+
+    <div v-if="step === 'wait'">
+      <transition name="fade" mode="out-in">
+        <div class="card" v-if="step === 'wait'" key="wait">
+          <h1>
+            Hallo {{ user.name }}! Bitte warte noch {{ (waittime - (waittime % 60))/60 }} Stunden und {{ (waittime % 60) }} Minuten, bis Du wieder einen Eintrag machst. ⏰</br>
+            Informiere dich doch währenddessen auf den Seiten des <a href="http://rki.de">Robert-Koch-Instituts<svg class="bi bi-box-arrow-up-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M1.5 13A1.5 1.5 0 003 14.5h8a1.5 1.5 0 001.5-1.5V9a.5.5 0 00-1 0v4a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V5a.5.5 0 01.5-.5h4a.5.5 0 000-1H3A1.5 1.5 0 001.5 5v8zm7-11a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.5H9a.5.5 0 01-.5-.5z"
+                  clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M14.354 1.646a.5.5 0 010 .708l-8 8a.5.5 0 01-.708-.708l8-8a.5.5 0 01.708 0z" clip-rule="evenodd" />
+              </svg></a>.
+          </h1>
+        </div>
+      </transition>
+    </div>
+
   </div>
 
   <script src="https://unpkg.com/vue"></script>
