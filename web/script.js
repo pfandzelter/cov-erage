@@ -11,16 +11,16 @@ function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function checkZip(zip) {
-  if (v.user.zip == "00000") return true;
+function checkZipInvalid(zip) {
+  if (zip == "00000") return true;
   return !(/^([0-9]{5})$/).test(zip);
 }
 
-function checkName(name) {
+function checkNameInvalid(name) {
   return !(/^([A-Z][a-z,\-,\ ,\.]{0,40})$/).test(name);
 }
 
-function checkBirth(birthyear) {
+function checkBirthInvalid(birthyear) {
   return !(birthyear >= 1900 && birthyear <= 2020)
 }
 
@@ -76,19 +76,23 @@ let v = new Vue({
   },
   computed: {
     invalidName: () => {
-      return checkName(v.user.name);
+      return checkNameInvalid(v.user.name);
     },
     invalidZIP: () => {
-      return checkZip(v.user.zip);
+      return checkZipInvalid(v.user.zip);
     },
     invalidBirth: () => {
-      return checkBirth(v.user.birth_year);
+      return checkBirthInvalid(v.user.birth_year);
     }
   },
   mounted() {
     if (localStorage.user) {
       user = JSON.parse(localStorage.user);
-      if (!checkZip(user.zip) && !checkName(user.name) && !checkBirth(user.birthyear)) {
+      if (checkZipInvalid(user.zip) || checkNameInvalid(user.name) || checkBirthInvalid(Number(user.birth_year))) {
+        this.user.id = uuidv4();
+      } else {
+        this.user = user;
+
         this.waittime = (24 * 60) - Math.ceil(Math.abs(((new Date()).getTime() - this.user.lastentry)) / (60 * 1000));
 
         if (this.waittime <= 0) {
@@ -106,8 +110,6 @@ let v = new Vue({
             this.step = 'entry';
           }
         }, 1000);
-      } else {
-        this.user.id = uuidv4();
       }
     } else {
       this.user.id = uuidv4();
