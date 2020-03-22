@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		BF4F324224267A7B002D1ED9 /* Startscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startscreen.swift; sourceTree = "<group>"; };
 		BF4F324424268601002D1ED9 /* StartscreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartscreenVM.swift; sourceTree = "<group>"; };
-		BFE1D143242577130011AADB /* CoV-Erage-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoV-Erage-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE1D143242577130011AADB /* CoV-erage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoV-erage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE1D146242577130011AADB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE1D148242577130011AADB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BFE1D14A242577130011AADB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		BFE1D144242577130011AADB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFE1D143242577130011AADB /* CoV-Erage-IOS.app */,
+				BFE1D143242577130011AADB /* CoV-erage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,7 +145,7 @@
 			);
 			name = "CoV-Erage-IOS";
 			productName = "CoV-Erage-IOS";
-			productReference = BFE1D143242577130011AADB /* CoV-Erage-IOS.app */;
+			productReference = BFE1D143242577130011AADB /* CoV-erage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -354,7 +354,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mobile.corona.computing.CoV-Erage-IOS";
-				PRODUCT_NAME = "CoV-Erage-IOS";
+				PRODUCT_NAME = "CoV-erage";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,7 +374,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mobile.corona.computing.CoV-Erage-IOS";
-				PRODUCT_NAME = "CoV-Erage-IOS";
+				PRODUCT_NAME = "CoV-erage";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
