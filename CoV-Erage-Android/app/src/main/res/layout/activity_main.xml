@@ -17,8 +17,8 @@
         android:layout_gravity="center_horizontal"
         android:animateLayoutChanges="true"
         android:background="@android:color/transparent"
-        android:layout_marginLeft="10pt"
-        android:layout_marginRight="10pt"
+        android:layout_marginLeft="8pt"
+        android:layout_marginRight="5pt"
         android:orientation="vertical">
 
         <ImageView
@@ -40,7 +40,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2pt"
+            android:layout_marginTop="4pt"
             >
             <TextView
                 android:id="@+id/geschlechtText"
@@ -58,12 +58,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:entries="@array/gender"/>
+                android:entries="@array/gender" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/geburtsjahrText"
@@ -87,6 +88,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -95,20 +97,24 @@
                 android:textSize="9pt"
                 android:textColor="@color/white"
                 android:layout_alignParentStart="true"
-                />
-            <EditText
-                android:id="@+id/postleitzahlEditText"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:inputType="number"
-                android:maxLength="5"
-                android:hint="z.B. 10999"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:focusedByDefault="false"
-                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 />
+
+            <EditText
+                android:id="@+id/postleitzahlEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6pt"
+                android:cursorVisible="true"
+                android:focusedByDefault="false"
+                android:hint="12345"
+                android:inputType="number"
+                android:maxLength="5"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray" />
         </RelativeLayout>
 
         <TextView
@@ -131,7 +137,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" >
+            android:gravity="center"
+            android:layout_marginRight="7pt">
 
             <SeekBar
                 android:id="@+id/generalHealthSeekbar"
@@ -166,7 +173,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2pt">
             <TextView
                 android:id="@+id/coronaText"
                 android:layout_width="wrap_content"
@@ -208,18 +216,20 @@
                 android:layout_width="wrap_content"
                 android:inputType="number"
                 android:maxLength="4"
-                android:hint="z.B. 2"
+                android:hint="0"
                 android:textColor="@color/white"
                 android:textSize="9pt"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/gray"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6pt"/>
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2pt">
             <TextView
                 android:id="@+id/hustenTextView"
                 android:layout_width="wrap_content"
@@ -245,6 +255,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/fieberTextView"
@@ -269,6 +280,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/kopfschmerzenTextView"
@@ -293,6 +305,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/halsschmerzenTextView"
@@ -317,6 +330,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/schnupfenTextView"
@@ -341,6 +355,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/gliederschmerzenTextView"
@@ -365,6 +380,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/durchfallTextView"
@@ -389,6 +405,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/einsamkeitTextView"
@@ -413,6 +430,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2pt"
             >
             <TextView
                 android:id="@+id/schlafproblemeTextView"
