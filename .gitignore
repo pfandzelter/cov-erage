@@ -2,6 +2,7 @@
 analytics/*.pdf
 analytics/Postleitzahlen.csv
 TestLake1Mio*
+SimLakeInput.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

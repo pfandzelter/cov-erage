@@ -3,7 +3,6 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
  */
-
 body {
   font-family: 'Lato';
 }
@@ -18,8 +17,21 @@ h6 {
   font-weight: 800 !important;
 }
 
-div .order-lg-1 .order-lg-2 {
-  text-align: center;
+div .order-lg-1 {
+  text-align: right;
+}
+
+div .order-lg-2 {
+  text-align: left;
+}
+
+p>a {
+  font-weight: bold;
+  color: #255957;
+}
+
+p>a:hover {
+  color: #cc5500;
 }
 
 #logo {
@@ -32,7 +44,7 @@ div .order-lg-1 .order-lg-2 {
   min-height: 200px;
 }
 
-#logo > img {
+#logo>img {
   max-width: 75%;
   max-height: 75%;
 }
@@ -113,9 +125,11 @@ header.masthead .bg-circle {
     position: relative;
     height: 100vh;
   }
+
   header.masthead .masthead-content .masthead-heading {
     font-size: 6rem;
   }
+
   header.masthead .masthead-content .masthead-subheading {
     font-size: 4rem;
   }

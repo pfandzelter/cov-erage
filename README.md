@@ -1,4 +1,4 @@
-# CoV-Erage
+![Coverage Logo](./coverage-inv.png)
 
 Project designed and implemented by the MobileCoronaComputing team.
 
