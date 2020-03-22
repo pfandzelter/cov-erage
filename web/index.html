@@ -57,7 +57,8 @@
 
         <div class="card" v-if="signupstep === 2" key="entername" @keydown.enter="(() => {if(!invalidName){nextsignup()}})">
           <div class="card-inner">
-            <h2>Dein Vorname</h2>
+            <h2>Dein Vorname*</h2>
+            <sub>*Dein Vorname wird nur lokal auf deinem Gerät gespeichert und niemals übertragen</sub>
             </br>
             <at-input v-bind:class="{ 'at-input--error': invalidName }" id="name" name="name" v-model="user.name" placeholder="Vorname" />
           </div>
