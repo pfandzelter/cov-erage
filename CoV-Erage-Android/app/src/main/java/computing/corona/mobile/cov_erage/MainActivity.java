@@ -38,6 +38,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
+    int submissionCounter;
+
     String userId;
     String postalCode;
     int gender;
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPrefs = getApplicationContext()
                 .getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+
+        submissionCounter = sharedPrefs.getInt("submissionCounter", 0);
 
         userId = sharedPrefs.getString("userId","-1");
 
@@ -427,13 +431,18 @@ public class MainActivity extends AppCompatActivity {
                 long lastTS = sharedPrefs.getLong("lastSent",-1);
                 if (getCountOfDays(thisTS,lastTS) < 0) {
                     new sendDataTask(postRequest).execute();
-					Toast.makeText(MainActivity.this,"Daten gesendet",Toast.LENGTH_LONG).show();
+					Toast.makeText(MainActivity.this,"Danke!",Toast.LENGTH_LONG).show();
+					editor.putInt("submissionCounter", ++submissionCounter);
 
                 } else {
-                    Toast.makeText(MainActivity.this,"Jeden Tag nur ein Senden erlaubt",Toast.LENGTH_LONG).show();
+                    new sendDataTask(postRequest).execute();
+                    Toast.makeText(MainActivity.this,"Danke!",Toast.LENGTH_LONG).show();
+                    // Toast.makeText(MainActivity.this,"Jeden Tag nur ein Senden erlaubt",Toast.LENGTH_LONG).show();
+                    editor.putInt("submissionCounter", ++submissionCounter);
                 }
                 editor.putLong("lastSent",thisTS);
                 editor.apply();
+                finish();
             }
         });
     }
