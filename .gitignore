@@ -182,3 +182,15 @@ Pods/
 /datagenerator/*.iml
 /.idea
 /analytics/.idea
+
+## Android Studio
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
