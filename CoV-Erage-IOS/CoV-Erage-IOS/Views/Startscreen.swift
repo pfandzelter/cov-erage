@@ -23,12 +23,18 @@ struct Startscreen: View {
             
             Spacer()
             
-            Text("CoV-erage")
-                .font(.custom("Arial", size: 80))
-                .fixedSize()
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(16)
                 .padding(.vertical, 20.0)
             
-            Statistic(labelText: "Gesamtzahl an Einreichungen", value: "100")
+//            Text("CoV-erage")
+//                .font(.custom("Arial", size: 80))
+//                .fixedSize()
+//                .padding(.vertical, 20.0)
+            
+            Statistic(labelText: "Gesamtzahl an Einreichungen", value: "41289")
             Statistic(labelText: "Deine Einreichungen", value: "\(self.startscreenVM.numberOfSubmittedDroplets)")
                         
             Spacer()

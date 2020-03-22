@@ -76,12 +76,12 @@ struct AboutYouView: View {
             HStack {
                 Text("Postleitzahl 🏘: ")
                     .fontWeight(.black)
-                TextField("Postleitzahl", text: self.$postDropletVM.postalCode).keyboardType(.numberPad)
+                TextField("Postleitzahl", text: self.$postDropletVM.postalCode)
             }
             HStack {
                 Text("Geburtsjahr 🥳: ")
                     .fontWeight(.black)
-                TextField("Geburtsjahr", text: self.$postDropletVM.yearOfBirth).keyboardType(.numberPad)
+                TextField("Geburtsjahr", text: self.$postDropletVM.yearOfBirth)
             }
         
         }
