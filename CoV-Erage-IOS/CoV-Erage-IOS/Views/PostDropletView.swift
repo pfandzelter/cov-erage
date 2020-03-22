@@ -13,7 +13,7 @@ struct PostDropletView: View {
     @Binding var isPresented: Bool
     let startscreenVM: StartscreenVM?
     @ObservedObject var postDropletVM: PostDropletVM
-    
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -25,24 +25,31 @@ struct PostDropletView: View {
                 }
                 
                 HStack {
-                    Button("Absenden") {
-                        self.postDropletVM.postDroplet(startscreenVM: self.startscreenVM)
-                        self.isPresented = false
+                    Button(action: sendDroplet) {
+                        Text("Absenden").padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
+                        .foregroundColor(Color.white)
+                        .background(Color(red: 46/255, green: 204/255, blue: 113/255))
+                        .cornerRadius(10)
                     }
-                }.padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
-                .foregroundColor(Color.white)
-                .background(Color(red: 46/255, green: 204/255, blue: 113/255))
-                .cornerRadius(10)
-            }.navigationBarTitle("Tägliche Umfrage")
-            
-        }
+                }
+            }
+            .navigationBarTitle("Tägliche Umfrage")
+        }.navigationViewStyle(StackNavigationViewStyle())
+
+
+    }
+
+    
+    func sendDroplet() {
+        self.postDropletVM.postDroplet(startscreenVM: self.startscreenVM)
+        self.isPresented = false
     }
 }
 
 extension Double {
     func formatted() -> String {
         if self == -1 {
-            return "KA"
+            return "Keine Angabe"
         }
         return String(format: "%.0f", self)
     }
@@ -57,14 +64,19 @@ struct PostDropletView_Previews: PreviewProvider {
 struct AboutYouView: View {
     
     @ObservedObject var postDropletVM: PostDropletVM
-    
+        
     var body: some View {
         Section(header: Text("Über Dich (Pflichtfelder)").font(.body), footer:
-            HStack {
-                Spacer()
-                Text("Alle weiteren Felder sind optional.")
-                    .font(.caption)
-                Spacer()
+            VStack {
+                Button("Keyboard ausblenden") {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+                HStack {
+                    Spacer()
+                    Text("Alle weiteren Felder sind optional.")
+                        .font(.caption)
+                    Spacer()
+                }
             }) {
             Section(header: Text("Geschlecht ").font(.body).fontWeight(.black)) {
                 Picker("",selection: self.$postDropletVM.gender) {
@@ -76,12 +88,12 @@ struct AboutYouView: View {
             HStack {
                 Text("Postleitzahl 🏘: ")
                     .fontWeight(.black)
-                TextField("Postleitzahl", text: self.$postDropletVM.postalCode)
+                TextField("Postleitzahl", text: self.$postDropletVM.postalCode).keyboardType(.numberPad)
             }
             HStack {
                 Text("Geburtsjahr 🥳: ")
                     .fontWeight(.black)
-                TextField("Geburtsjahr", text: self.$postDropletVM.yearOfBirth)
+                TextField("Geburtsjahr", text: self.$postDropletVM.yearOfBirth).keyboardType(.numberPad)
             }
         
         }
@@ -112,11 +124,12 @@ struct GeneralHealthView: View {
             }
             
             HStack {
-                Text("Anzahl Kontakte (24h): \(self.postDropletVM.numberOfContacts.formatted())")
+                Text("Anzahl Kontakte (24h):")
                 Spacer()
-                Slider(value: self.$postDropletVM.numberOfContacts, in: 0...1000, step: 10)
-                    .frame(width: 150)
+                Text("\(self.postDropletVM.numberOfContacts.formatted())").padding(.trailing, 15.0)
             }
+            Slider(value: self.$postDropletVM.numberOfContacts, in: 0...1000, step: 1)
+
         }
     }
 }

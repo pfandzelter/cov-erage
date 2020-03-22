@@ -50,19 +50,17 @@ struct Startscreen: View {
                 Spacer()
             }
             
-            Button("Neue Kurzumfrage") {
-                if self.startscreenVM.readyToSubmitAgain() {
-                    self.showModal = true
-                } else {
-                    self.showAlert = true
-                }
+            Button(action: tryToStartSurvey) {
+                Text("Neue Kurzumfrage")
+                .fixedSize()
+                .padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
+                .frame(maxWidth: .infinity)
+                .foregroundColor(backgroundColor)
+                .background(foregroundColor)
+                .cornerRadius(10)
+                .padding(.bottom)
             }
-            .padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
-            .frame(maxWidth: .infinity)
-            .foregroundColor(backgroundColor)
-            .background(foregroundColor)
-            .cornerRadius(10)
-            .padding(.bottom)
+            
         }
         .background(backgroundColor)
         .edgesIgnoringSafeArea(.all)
@@ -74,9 +72,15 @@ struct Startscreen: View {
             Alert(title: Text("Nicht so eilig!"), message: Text("Eine Umfrage jede Minute reicht, danke für deine Mithilfe :)!"), dismissButton: .default(Text("Gerne!")))
         }
     }
+    
+    func tryToStartSurvey() {
+        if self.startscreenVM.readyToSubmitAgain() {
+            self.showModal = true
+        } else {
+            self.showAlert = true
+        }
+    }
 }
-
-
 
 struct Startscreen_Previews: PreviewProvider {
     static var previews: some View {
