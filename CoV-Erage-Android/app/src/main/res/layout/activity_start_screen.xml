@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".StartScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:adjustViewBounds="true"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="50pt"
+            android:layout_marginBottom="50pt"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="30px"
+            android:layout_marginLeft="30px"
+            android:layout_marginBottom="5pt">
+            <TextView
+                android:id="@+id/textViewGesamt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="9pt"
+                android:text="Gesamtzahl der Einreichungen:" />
+
+            <TextView
+                android:id="@+id/textViewGesamtNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textAlignment="viewEnd"
+                android:textSize="9pt"
+                android:text="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="30px"
+            android:layout_marginLeft="30px">
+            <TextView
+                android:id="@+id/textViewYours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="9pt"
+                android:text="Deine Einreichungen:" />
+
+            <TextView
+                android:id="@+id/textViewYoursNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textAlignment="viewEnd"
+                android:textSize="9pt"
+                android:text="23" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="fill_parent"
+                android:layout_height="25pt"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="9pt"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20pt"
+                android:layout_marginRight="30px"
+                android:layout_marginLeft="30px"
+                android:text="Einreichen"
+                android:onClick="onSubmitClick"/>
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

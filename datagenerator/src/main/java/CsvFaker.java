@@ -13,19 +13,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.Random;
 //Code based on https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AppendixSampleDataCodeJava.html
 
 public class CsvFaker {
 
     public static void main(String[] args) {
-        createSampleDroplets("csvFaker.csv", 100000);
+        createSampleDroplets("TestLake1Mio6Clusters.csv", 1000000);
     }
 
 
     private static void createSampleDroplets(String fileName, int number) {
 
+        Random r = new Random();
+        r.setSeed(System.currentTimeMillis());
         Faker faker = new Faker();
         PLZFaker plzFaker = new PLZFaker();
+        System.out.println("generating cluster(s)...");
+        plzFaker.generatePlzCluster(6);
+        System.out.println("Clusers generated.");
         FileWriter fw = null;
         try {
             fw = new FileWriter(fileName);
@@ -34,10 +40,46 @@ public class CsvFaker {
             fw.write(headerLine + "\n");
 
             for (int i = 0; i < number; i++) {
+                if (i % 1000 == 0) {
+                    System.out.println("Generating droplet#" + i);
+                }
+                String plz = plzFaker.getPlz();
+
+                int corona = 1;
+                int rand = r.nextInt(100);
+                if (plzFaker.isPlzInCluster(plz)) {
+                    //increase probability of 2 and 3
+                    if (rand > 50) {
+                        corona = 2;
+                    }
+                    if (rand > 60) {
+                        corona = 3;
+                    }
+                    if (rand > 70) {
+                        corona = 4;
+                    }
+                    if (rand > 80) {
+                        corona = 5;
+                    }
+                } else {
+                    if (rand > 70) {
+                        corona = 2;
+                    }
+                    if (rand > 72) {
+                        corona = 3;
+                    }
+                    if (rand > 75) {
+                        corona = 4;
+                    }
+                    if (rand > 80) {
+                        corona = 5;
+                    }
+                }
+
                 String line = "";
                 line += "\"" + faker.number().numberBetween(1, 4) + "\",";
-                line += "\"" + faker.number().numberBetween(1, 4) + "\",";
-                line += "\"" + plzFaker.getPlz() + "\",";
+                line += "\"" + corona + "\",";
+                line += "\"" + plz + "\",";
                 line += "\"" + faker.number().numberBetween(1, 6) + "\",";
                 line += "\"" + faker.number().numberBetween(1, 3) + "\",";
                 line += "\"" + faker.artist().name() + "\",";
@@ -55,6 +97,8 @@ public class CsvFaker {
                 line += "\"" + faker.number().numberBetween(1950, 2010) + "\",";
                 fw.write(line + "\n");
             }
+            fw.flush();
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
