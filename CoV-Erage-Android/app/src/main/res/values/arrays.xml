@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gender">
+        <item>keine Angabe</item>
+        <item>weiblich</item>
+        <item>männlich</item>
+        <item>divers</item>
+    </string-array>
+    <string-array name="coronaVirus">
+        <item>keine Angabe</item>
+        <item>nein</item>
+        <item>ich glaube ja</item>
+        <item>positiv getestet</item>
+        <item>überstanden</item>
+        <item>weiß ich nicht</item>
+    </string-array>
+    <string-array name="coughing">
+        <item>keine Angabe</item>
+        <item>keinen</item>
+        <item>wenig</item>
+        <item>starken</item>
+    </string-array>
+    <string-array name="temperature">
+        <item>keine Angabe</item>
+        <item>kein</item>
+        <item>etwas</item>
+        <item>hoch (>39°C)</item>
+    </string-array>
+    <string-array name="headache">
+        <item>keine Angabe</item>
+        <item>keine</item>
+        <item>etwas</item>
+        <item>starke</item>
+    </string-array>
+    <string-array name="diarrhea">
+        <item>keine Angabe</item>
+        <item>ja</item>
+        <item>nein</item>
+    </string-array>
+    <string-array name="loneliness">
+        <item>keine Angabe</item>
+        <item>kaum auszuhalten</item>
+        <item>ich fühle mich schlecht</item>
+        <item>geht so</item>
+        <item>komme gut klar</item>
+        <item>alles bestens</item>
+    </string-array>
+    <string-array name="insomnia">
+        <item>keine Angabe</item>
+        <item>kein Auge zu</item>
+        <item>ich liege oft wach</item>
+        <item>geht so</item>
+        <item>so wie sonst auch</item>
+        <item>besser als sonst</item>
+    </string-array>
+</resources>
