@@ -27,6 +27,7 @@ let v = new Vue({
   el: "#app",
   data: () => ({
     step: "signup",
+    isActive: true,
     entrystep: 1,
     signupstep: 1,
     waittime: 0,
@@ -46,7 +47,7 @@ let v = new Vue({
     },
     user: {
       id: null,
-      name: null,
+      name: "",
       zip: "00000",
       birth_year: 1900,
       gender: -1,
@@ -59,6 +60,15 @@ let v = new Vue({
     backbutton: backbutton,
     fwdbutton: fwdbutton,
     submitbutton: submitbutton
+  },
+  computed: {
+    invalidName: () => {
+      return !(/^([A-Z][a-z,\-,\ ,\.]{0,40})$/).test(v.user.name);
+    },
+    invalidZIP: () => {
+      if (v.user.zip == "00000") return true;
+      return !(/^([0-9]{5})$/).test(v.user.zip);
+    }
   },
   mounted() {
     if (localStorage.user) {

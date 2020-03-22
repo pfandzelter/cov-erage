@@ -55,27 +55,27 @@
           <at-button type="primary" size="small" @click.prevent="nextsignup()">Los geht's!<i class="icon icon-chevron-right"></i></at-button>
         </div>
 
-        <div class="card" v-if="signupstep === 2" key="entername" @keydown.enter="nextsignup()">
+        <div class="card" v-if="signupstep === 2" key="entername" @keydown.enter="(() => {if(!invalidName){nextsignup()}})">
           <div class="card-inner">
             <h2>Dein Vorname</h2>
             </br>
-            <at-input id="name" name="name" v-model="user.name" placeholder="Vorname" />
+            <at-input v-bind:class="{ 'at-input--error': invalidName }" id="name" name="name" v-model="user.name" placeholder="Vorname" />
           </div>
           <div>
             <back-button @click.native.once="prevsignup()"></back-button>
-            <forward-button @click.native.once="nextsignup()"></forward-button>
+            <forward-button :disabled="invalidName" @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>
 
-        <div class="card" v-if="signupstep === 3" key="enterzip" @keydown.enter="nextsignup()">
+        <div class="card" v-if="signupstep === 3" key="enterzip" @keydown.enter="(() => {if(!invalidZIP){nextsignup()}})">
           <div class="card-inner">
             <h2>Deine Postleitzahl</h2>
             </br>
-            <at-input id="zip" name="zip" v-model="user.zip" placeholder="Postleitzahl" />
+            <at-input v-bind:class="{ 'at-input--error': invalidZIP }" id="zip" name="zip" v-model="user.zip" placeholder=" Postleitzahl" />
           </div>
           <div>
             <back-button @click.native.once="prevsignup()"></back-button>
-            <forward-button @click.native.once="nextsignup()"></forward-button>
+            <forward-button :disabled="invalidZIP" @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>
 
