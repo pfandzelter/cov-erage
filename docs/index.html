@@ -60,6 +60,7 @@
     </div>
   </nav>
 
+
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
@@ -71,8 +72,7 @@
     </div>
   </header>
 
-  <section>
-    <a name="about"></a>
+  <section id="about">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
@@ -104,7 +104,8 @@
         <div class="col-lg-6">
           <div class="p-5">
             <h2 class="display-4">There's an app for that!</h2>
-            <p>Ob von Zuhause oder Unterwegs... Obwohl, lieber von Zuhause! <b>#flattenthecurve</b><br>Dank Apps für iOS, Android und den Browser können alle Bürger bequem ihre Symptome melden. Dabei unterstütz sie ein einfaches Interface, in dem nur
+            <p>Ob von Zuhause oder Unterwegs... Obwohl, lieber von Zuhause! <b>#flattenthecurve</b><br>Dank Apps für iOS, Android und den Browser können alle Bürger bequem ihre Symptome melden. Dabei unterstütz sie ein einfaches Interface, in dem
+              nur
               simple Fragen beantwortet werden müssen.</p>
           </div>
         </div>
@@ -112,8 +113,7 @@
     </div>
   </section>
 
-  <section>
-    <a name="team"></a>
+  <section id="team">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
@@ -159,6 +159,8 @@
     </div>
   </section>
 
+
+
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
@@ -170,6 +172,12 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+
+  <script type="text/javascript">
+    var scroll = new SmoothScroll('a[href*="#"]');
+  </script>
 
 </body>
 
