@@ -104,6 +104,7 @@ struct GeneralHealthView: View {
             
             Picker("Corona Virus Infizierung 🏥",selection: self.$postDropletVM.coronaVirus) {
                 Text("Keine Angabe").tag(-1)
+                Text("Ich weiß nicht").tag(5)
                 Text("Nein, alles gut").tag(1)
                 Text("Ich glaube ja").tag(2)
                 Text("Ich bin positiv getested worden").tag(3)

@@ -1,3 +1,5 @@
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -182,3 +184,26 @@ Pods/
 /datagenerator/*.iml
 /.idea
 /analytics/.idea
+
+## Android Studio
+# Built application files
+*.aar
+*.ap_
+*.aab
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties

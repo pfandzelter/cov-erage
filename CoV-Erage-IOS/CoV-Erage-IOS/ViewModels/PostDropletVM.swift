@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class PostDropletVM: ObservableObject {
     
-    let userId: String = "\(UUID())"
+    let userId: String = UIDevice.current.identifierForVendor?.uuidString ?? "\(UUID())"
     var postalCode: String = ""
     var gender: Int = -1
     var yearOfBirth: String = ""
