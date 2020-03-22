@@ -352,23 +352,15 @@ public class MainActivity extends AppCompatActivity {
                     postRequest.put("loneliness", loneliness);
                     postRequest.put("insomnia", insomnia);
                 } catch (JSONException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                // Log.d("COVID", postRequest.toString());
-                Date date = Calendar.getInstance().getTime();
-                Log.d("COVID", date.toString());
-                Date date2 = new Date();
-                date2.setTime(date.getTime() - 200000000);
-                Log.d("COVID",date2.toString());
-                // date2.setTime();
-                //Log.d("COVID",getTimeRemaining(date.getTime(),date2.getTime())+"");
-                Log.d("COVID", getCountOfDays(date.getTime(),date2.getTime()) + "");
 
                 long thisTS = Calendar.getInstance().getTime().getTime();
                 long lastTS = sharedPrefs.getLong("lastSent",-1);
                 if (getCountOfDays(thisTS,lastTS) < 0) {
                     new sendDataTask(postRequest).execute();
+					Toast.makeText(MainActivity.this,"Daten gesendet",Toast.LENGTH_LONG).show();
+
                 } else {
                     Toast.makeText(MainActivity.this,"Jeden Tag nur ein Senden erlaubt",Toast.LENGTH_LONG).show();
                 }
