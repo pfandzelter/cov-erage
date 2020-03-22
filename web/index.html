@@ -80,14 +80,14 @@
           </div>
         </div>
 
-        <div class="card" v-if="signupstep === 4" key="enterbirthdate" @keydown.enter="nextsignup()">
+        <div class="card" v-if="signupstep === 4" key="enterbirthdate" @keydown.enter="(() => {if(!invalidBirth){nextsignup()}})">
           <div class="card-inner">
             <h2>Dein Geburtsjahr</h2>
             </br>
-            <at-input-number v-model="user.birth_year"></at-input-number>
+            <at-input v-bind:class="{ 'at-input--error': invalidBirth }" v-model="user.birth_year">
           </div>
           <div>
-            <back-button @click.native.once="prevsignup()"></back-button>
+            <back-button :disabled="invalidBirth" @click.native.once="prevsignup()"></back-button>
             <forward-button @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>

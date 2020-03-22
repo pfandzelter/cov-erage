@@ -49,7 +49,7 @@ let v = new Vue({
       id: null,
       name: "",
       zip: "00000",
-      birth_year: 1900,
+      birth_year: 1980,
       gender: -1,
       lastentry: new Date(0).getTime()
     },
@@ -68,6 +68,10 @@ let v = new Vue({
     invalidZIP: () => {
       if (v.user.zip == "00000") return true;
       return !(/^([0-9]{5})$/).test(v.user.zip);
+    },
+    invalidBirth: () => {
+      console.log(v.user.birth_year)
+      return !(v.user.birth_year >= 1900 && v.user.birth_year <= 2020)
     }
   },
   mounted() {
