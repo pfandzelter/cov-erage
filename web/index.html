@@ -87,8 +87,8 @@
             <at-input v-bind:class="{ 'at-input--error': invalidBirth }" v-model="user.birth_year">
           </div>
           <div>
-            <back-button :disabled="invalidBirth" @click.native.once="prevsignup()"></back-button>
-            <forward-button @click.native.once="nextsignup()"></forward-button>
+            <back-button @click.native.once="prevsignup()"></back-button>
+            <forward-button :disabled="invalidBirth" @click.native.once="nextsignup()"></forward-button>
           </div>
         </div>
 
