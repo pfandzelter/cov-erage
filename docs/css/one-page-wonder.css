@@ -40,6 +40,13 @@ p>a:hover {
   margin: 10px;
 }
 
+#video {
+  max-width: 90vh;
+  max-height: 45vh;
+  min-width: 60vw;
+  min-height: 37.5vw;
+}
+
 #logo {
   display: flex;
   align-items: center;

@@ -23,7 +23,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-29673840-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-29673840-2');
@@ -69,12 +72,11 @@
     </div>
   </nav>
 
-
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <div id="logo">
-          <img src="./assets/logo-small.png" alt="">
+        <div class="embed-responsive embed-responsive-16by9" id="video">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/8S1JJoFSa7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <a href="https://app.cov-erage.pfandzelter.com" class="btn btn-primary btn-xl rounded-pill mt-5">Jetzt Probieren!</a>
       </div>
